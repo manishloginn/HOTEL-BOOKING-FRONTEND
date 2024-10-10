@@ -1,0 +1,43 @@
+.inputcontainer {
+    // border: 1px solid;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 70px;
+    margin: auto;
+    width: 70vw;
+    margin-top: -40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); 
+    .buttonn{
+        height: 60%;
+        width: 20%;
+        button{
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
+            outline: none;
+            border: none;
+            background-color: #F96B6B;
+            color: white;
+            font-size: 16px;
+        }
+    }
+   
+}
+.inputfields {
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input{
+        height: 100%; 
+        font-size: 16px;
+        padding: 10px;
+        border: none;
+        outline: none;
+    }
+   
+}
+
