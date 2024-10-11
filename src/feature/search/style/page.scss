@@ -24,6 +24,7 @@
     justify-content: center;
     align-items: center;
     height: 70%;
+    width: 90%;
     // border: 1px solid black;
     margin: auto;
     border-radius: 10px;
@@ -52,13 +53,13 @@
         }
     }
 
-    input {
+    .cityname {
         font-size: 16px;
-        padding: 10px;
+        height: 100%;
+        width: 30vw;
         border: none;
         outline: none;
-        height: 100%;
-        width: 10vw;
+        padding: 0 10px;
         background-color: transparent;
         background-color: rgba(255, 255, 255, 0.411);
         border-radius: 10px;
@@ -74,5 +75,16 @@
         background-color: #F96B6B;
         color: white;
         font-size: 16px;
+    }
+
+    .calender {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // border: 1px solid   ;
+        font-size: 18px;
+        gap: 10px;
+        width: 20vw;
+        height: 100%;
     }
 }
