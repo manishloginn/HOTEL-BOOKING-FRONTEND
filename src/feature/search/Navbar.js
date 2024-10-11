@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import "./style/navbar.scss"
 
 const Navbar = () => {
+  
   return (
     <div className='container'>
       <div className='navbar'>

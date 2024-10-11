@@ -13,6 +13,8 @@ const LazyLoadingWrapper = ({ Component }) => {
 };
 
 const App = () => {
+
+
   return (
     <BrowserRouter>
     <Routes>
