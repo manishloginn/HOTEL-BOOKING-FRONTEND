@@ -3,25 +3,38 @@ import Navbar from "./Navbar";
 import { useState } from "react";
 import "./style/page.scss"
 
+
+import { UsergroupDeleteOutlined } from '@ant-design/icons';
+
+
 const CitySearch = () => {
 
   const [formData, setformData] = useState({
-
+    location: '',
+    checkindate: "",
+    checkoutdate: "",
+    guest: 1
   })
 
   const navigate = useNavigate()
 
 
   const handelclick = () => {
-    navigate('/search/:location/:checkindate/:checkoutdate/:guest')
+    navigate(`/search/${formData.location}/${formData.checkindate}/${formData.checkoutdate}/${formData.guest}`)
+    // navigate('/search/:location/:checkindate/:checkoutdate/:guest')
   }
 
 
 
-  const formchangeHandel = () => {
-
+  const formchangeHandel = (e) => {
+    const { name, value } = e.target;
+    setformData({
+      ...formData,
+      [name]: value
+    })
   }
 
+  console.log(formData)
 
   return (
     <div>
@@ -29,40 +42,45 @@ const CitySearch = () => {
         <Navbar />
       </div>
 
-      <form className="inputcontainer">
+      <div className="inputcontainer">
         <div className="inputfields">
           <input
             style={{ width: "200px" }}
             type="text"
-            name="city"
+            name="location"
             placeholder="Search City"
             required
-            onChange={() => formchangeHandel}
+            onChange={formchangeHandel}
           />
           <input
             type="date"
             name="checkindate"
             required
-            onChange={() => formchangeHandel}
+            onChange={formchangeHandel}
           />
           <input
             type="date"
             name="checkoutdate"
             required
-            onChange={() => formchangeHandel}
+            onChange={formchangeHandel}
           />
-          <input
-            style={{ width: "70px" }}
-            type="text"
-            name="guest"
-            required
-            onChange={() => formchangeHandel}
-          />
+          <label className="inputlabel">
+            <input
+              style={{ width: "30px" }}
+              type="text"
+              name="guest"
+              value={formData.guest}
+              required
+              onChange={formchangeHandel}
+            />
+            <UsergroupDeleteOutlined />
+          </label>
+
+          <button  onClick={handelclick}>Search</button>
         </div>
-        <div className="buttonn">
-          <button type="submit">Search</button>
-        </div>
-      </form>
+
+
+      </div>
 
     </div>
   );
