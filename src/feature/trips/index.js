@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import Filters from "../filters";
 import Navbar from "../search/Navbar";
+import HotelsList from "./HotelsList";
+import './styles/index.scss'
 
 const TripsScreen = () => {
   const params = useParams()
@@ -11,10 +13,13 @@ const TripsScreen = () => {
 
   return (
     <div >
-      <Navbar />
-      <div>
-        <Filters />
-        <p>This is the trips screen where user can find all trips</p>
+      <div className="trip-wrraper">
+        <div className="filters">
+          <Filters />
+        </div >
+        <div className="HotelsList">
+          <HotelsList />
+        </div>
       </div>
     </div>
   );
