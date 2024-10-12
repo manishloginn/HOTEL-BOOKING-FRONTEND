@@ -1,6 +1,10 @@
-const baseUrl = "http://localhost:8080";
+const baseUrl = "http://localhost:5000";
 
 // TODO: add REST endpoints int this
-const Endpoints = {};
+const Endpoints = {
+    hotelData : `${baseUrl}/hotelData`
+    
+    
+};
 
 export default Endpoints;

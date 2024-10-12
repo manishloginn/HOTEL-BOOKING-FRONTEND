@@ -1,0 +1,10 @@
+.tripbox{
+    padding: 10px;
+    border: 1px solid;
+    display: grid;
+    height: 80vh;
+    width: 90vw;
+    margin: auto;
+    margin-top: 10px;
+    grid-template-columns: 4fr 8fr;
+}

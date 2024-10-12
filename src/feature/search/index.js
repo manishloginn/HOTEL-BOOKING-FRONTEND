@@ -1,22 +1,30 @@
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import "./style/page.scss";
 
 
-import { Calendar, theme } from 'antd';
+
+import { Calendar } from 'antd';
 
 
 
 import { LineOutlined, UsergroupDeleteOutlined } from '@ant-design/icons';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+
 import dayjs from "dayjs";
+import Endpoints from "../../network/endpoints";
+import request from "../../network/request";
+import { addHotelData } from "./slice";
 
 
 
 const CitySearch = () => {
 
-  const { token } = theme.useToken();
 
+  const [toggleCity, settoggleCity] = useState(false)
   const [formData, setformData] = useState({
     location: '',
     checkindate: dayjs().format('YYYY-MM-DD'),
@@ -28,6 +36,11 @@ const CitySearch = () => {
 
   const navigate = useNavigate()
 
+  const cities = useSelector((state) => state.search.hotelData)
+
+  const uniqueCities = Array.from(
+    new Set(cities?.data?.map((item) => item.location))
+  )
 
 
 
@@ -51,8 +64,15 @@ const CitySearch = () => {
 
   const onCheckinChange = (value) => {
     const date = value.format('YYYY-MM-DD');
-    console.log('Selected Check-out Date:', date);
-    setformData((prev) => ({ ...prev, checkindate: date }));
+    if(date !== value){
+      setcheckinTrue(false)
+      setcheckOutTrue(true)
+    }
+    setformData((prev) => ({ 
+      ...prev, 
+      checkindate: date,
+      checkoutdate:dayjs(date).add(1, 'day').format('YYYY-MM-DD'),
+    }));
   };
 
   const onCheckOutChange = (value) => {
@@ -60,9 +80,10 @@ const CitySearch = () => {
     setformData((prev) => ({ ...prev, checkoutdate: date }));
   };
 
-  const haldelcheckinCalender = () => {
-    if (checkOutTrue) {
+  const haldelcheckinCalender = (e) => {
+    if (checkOutTrue || toggleCity) {
       setcheckOutTrue(false)
+      settoggleCity(false)
     }
     setTimeout(() => {
       setcheckinTrue((prev) => !prev)
@@ -71,8 +92,9 @@ const CitySearch = () => {
   }
 
   const haldelCheckoutCalender = () => {
-    if (checkinTrue) {
+    if (checkinTrue || toggleCity) {
       setcheckinTrue(false)
+      settoggleCity(false)
     }
     setTimeout(() => {
       setcheckOutTrue((prev) => !prev)
@@ -80,18 +102,51 @@ const CitySearch = () => {
 
   }
 
-  console.log(formData)
-
-
 
 
   const wrapperStyle = {
+    display:"flex",
+    justifyContext:"center",
+    flexDirection:"column",
+    textAlign:"center",
     width: 300,
-    border: `1px solid ${token.colorBorderSecondary}`,
-    borderRadius: token.borderRadiusLG,
+    border: `1px solid lightGrey `,
+    borderRadius: "10px",
     position: "absolute",
-    top: "370px",   // Adjust as needed
+    top: "370px",
   };
+
+
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+
+    const hotelDetchData = async () => {
+      const httpConfig = {
+        url: Endpoints.hotelData,
+        method: "GET",
+      }
+      const result = await request(httpConfig)
+      if (result.success) {
+        dispatch(addHotelData(result.data))
+      } else {
+        console.error("Error fetching hotel data:", result.data);
+      }
+    }
+    hotelDetchData()
+  }, [dispatch])
+
+  const haldelSelectCity = (e) => {
+    // console.log(e.target.innerText)
+    setformData(prev => ({
+      ...prev,
+      location:e.target.innerText
+    }))
+    settoggleCity(false)
+  }
+
+
+
 
   return (
     <div>
@@ -104,13 +159,31 @@ const CitySearch = () => {
           <input className="cityname"
             type="text"
             name="location"
+            value={formData.location}
             placeholder="Search City"
             onChange={formchangeHandel}
+            onClick={() => settoggleCity((prev) => !prev)}
           />
+
+          {
+            toggleCity && 
+            <div className="hoverCities">
+              {
+                uniqueCities && uniqueCities.map((item) => (
+                  <div className="inner" key={item}>
+                    < LocationCityIcon />
+                    <span onClick={haldelSelectCity}>{item}</span>
+                  </div>
+
+                ))
+              }
+            </div>
+          }
           <div className="calender">
             <p onClick={haldelcheckinCalender}>{formData.checkindate} </p>
             {
               checkinTrue && <div style={wrapperStyle}>
+                 <p>CHECK IN</p>
                 <Calendar
                   fullscreen={false}
                   onChange={onCheckinChange}
@@ -122,10 +195,14 @@ const CitySearch = () => {
             <p onClick={haldelCheckoutCalender}>{formData.checkoutdate}</p>
             {
               checkOutTrue && <div style={wrapperStyle}>
+                <p>CHECK OUT</p>
                 <Calendar
                   fullscreen={false}
                   onChange={onCheckOutChange}
-                  disabledDate={(current) => current && current < dayjs().startOf('day')}
+                  disabledDate={(current) => {
+                    const checkindate = dayjs(formData.checkindate).add(1, ('day'));
+                    return current && (current < checkindate || current < dayjs().startOf('day'))
+                  }}
                 />
               </div>
             }
