@@ -345,11 +345,14 @@ let hotelsArr = [
 
 const HotelsList = () => {
     return (
-        <div className="hotel-list-wrraper">{
+       
+        <div className="hotel-list-wrraper">
+            {
             hotelsArr.map((hotel) => {
                 return <Hotel key={hotel.name} hotel={hotel} />
             })
-        }</div>
+        }
+        </div>
     )
 }
 

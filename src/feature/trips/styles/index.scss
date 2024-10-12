@@ -1,223 +1,223 @@
-.trip-wrraper {
-    background-color: aqua;
-    display: flex;
-    height: 100vh;
+.tripbox {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    // background-color: blue;
+    margin-top: 10px;
+    padding: 10px;
+    width: 90%;
+    height: 85vh;
+    // border: 1px solid;
+    margin: auto;
     gap: 10px;
+}
 
-    .filters {
-        flex: 1;
-    }
+::-webkit-scrollbar {
+    width: 4px;
+}
 
-    .HotelsList {
-        overflow-y: scroll;
-        background-color: blue;
-        flex: 4;
+::-webkit-scrollbar-thumb {
+    background-color: #f96b6bb0;
+    border-radius: 10px;
+}
 
-        .hotel-list-wrraper {
-            background-color: gray;
+::-webkit-scrollbar-thumb:hover {
+    background-color: #F96B6B;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.hotel-list-wrraper {
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    // border: 1px solid;
+    // border: 1px solid red;
+    overflow-x: scroll;
+
+
+    .hotel {
+        height: 50vh;
+        display: flex;
+        justify-content: center;
+        // border: 1px solid;
+        // padding: 10px;
+
+        .left-section {
+            height: 100%;
+            width: 40%;
+            background-color: burlywood;
+
+            h1 {
+                padding: 10px;
+            }
+        }
+
+        .right-section {
+            box-sizing: border-box;
+            // height: 100%;
+            height: fit-content;
+            width: 60%;
+            background-color: #ffffff;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            justify-content: space-between;
+            padding: 20px;
+            // border: 1px solid;
 
-            .hotel {
-                height: 50vh;
+            .hotelListing-descriotion-content {
                 display: flex;
+                flex-direction: column;
+                gap: 20px;
 
-                .left-section {
-                    height: 100%;
-                    width: 50%;
-                    background-color: burlywood;
-                }
-
-                .right-section {
-                    box-sizing: border-box;
-                    height: 100%;
-                    width: 50%;
-                    background-color: #ffffff;
+                .hotelListing-descriotion-content-wrraper {
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-between;
-                    padding: 20px;
+                    gap: 5px;
 
-                    .hotelListing-descriotion-content {
+                    h3 {
+                        font-size: 20px;
+                        font-weight: 700;
+                        line-height: 24px;
+                        color: #222;
+                    }
+
+                    span {
+                        color: #222;
+                        font-weight: 400;
+                    }
+                }
+
+                .details-wrraper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+
+                    .hotel-rateing {
+                        width: 100%;
                         display: flex;
-                        flex-direction: column;
-                        gap: 20px;
+                        align-items: center;
 
-                        .hotelListing-descriotion-content-wrraper {
+                        .hotel-rateing-wrraper {
                             display: flex;
-                            flex-direction: column;
-                            gap: 5px;
+                            gap: 20px;
+                            align-items: center;
 
-                            h3 {
-                                font-size: 20px;
-                                font-weight: 700;
-                                line-height: 24px;
-                                color: #222;
+                            .star-wrraper {
+                                background-color: #52B520;
+                                color: #ffffff;
+                                width: 30px;
+                                padding: 1px 4px;
+                                border-radius: 2px;
+                                font-weight: 600;
+                                font-size: 12px;
+                                padding: 1px 6px;
                             }
 
-                            span {
+                            .ratimg-text {
+                                font-size: 12px;
+                                color: #222;
+                                font-family: Inter, sans-serif;
+                                line-height: 1.2;
+                            }
+                        }
+                    }
+
+                    .amenity-wrraper {
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+
+                        .amenity-wrraper-amenity {
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+
+                            .amenity-text {
+                                ont-size: 14px;
+                                line-height: 28px;
                                 color: #222;
                                 font-weight: 400;
                             }
                         }
+                    }
+                }
 
-                        .details-wrraper {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 15px;
+            }
 
-                            .hotel-rateing {
-                                width: 100%;
-                                display: flex;
-                                align-items: center;
 
-                                .hotel-rateing-wrraper {
-                                    display: flex;
-                                    gap: 20px;
-                                    align-items: center;
 
-                                    .star-wrraper {
-                                        background-color: #52B520;
-                                        color: #ffffff;
-                                        width: 30px;
-                                        padding: 1px 4px;
-                                        border-radius: 2px;
-                                        font-weight: 600;
-                                        font-size: 12px;
-                                        padding: 1px 6px;
-                                    }
+            .hotelListing-descriotion-price-btn {
+                display: flex;
+                justify-content: space-between;
 
-                                    .ratimg-text {
-                                        font-size: 12px;
-                                        color: #222;
-                                        font-family: Inter, sans-serif;
-                                        line-height: 1.2;
-                                    }
-                                }
-                            }
-
-                            .amenity-wrraper {
-                                display: flex;
-                                align-items: center;
-                                gap: 15px;
-
-                                .amenity-wrraper-amenity {
-                                    display: flex;
-                                    align-items: center;
-                                    gap: 8px;
-
-                                    .amenity-text {
-                                        ont-size: 14px;
-                                        line-height: 28px;
-                                        color: #222;
-                                        font-weight: 400;
-                                    }
-                                }
-                            }
-
-                            .hotelListing-description-label {
-                                display: flex;
-                                align-items: center;
-                                gap: 5px;
-                                width: 33%;
-                                height: 22%;
-                                border-radius: 4px;
-                                border: 2px solid rgba(0, 0, 0, .08);
-
-                                .label-icon {
-                                    background-color: rgb(33, 33, 33);
-                                    display: inline-block;
-                                    height: 16px;
-                                    padding: 3px;
-                                    border-radius: 2px;
-                                    margin: 1px !important;
-                                }
-                                .label-icon-text{
-                                    font-size: 12px;
-                                    line-height: 24px;
-                                    padding: 0px 7px;
-                                    font-weight: 900;
-                                    letter-spacing: 0.4px;
-                                    color: rgb(33, 33, 33);
-                                }
-                            }
+                .price-btn-text-wrraper {
+                    .price-btn-text-wrraper-price {
+                        .price {
+                            font-size: 24px;
+                            font-weight: 700;
                         }
 
+                        .strile-price {
+                            text-decoration: line-through;
+                            font-size: 16px;
+                            color: #6d787d;
+                            margin-right: 8px;
+                            font-weight: 400;
+                            line-height: 25px;
+                        }
+
+                        .percent-off {
+                            font-size: 14px;
+                            font-weight: 600;
+                            color: #f5a623;
+                            line-height: 25px;
+                        }
+
+                        #price-btn-text-wrraper-tax {
+                            font-weight: 400;
+                            line-height: 1em;
+                            margin-top: 4px;
+                            font-size: 12px;
+                            color: #6d787d;
+                        }
+                    }
+                }
+
+                .price-btn-text-wrraper-buttoms {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 5px;
+
+                    .view-details-btm {
+                        outline: none;
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 1.25em;
+                        width: auto;
+                        padding: 8px 16px !important;
+                        background-color: #fff;
+                        color: #222;
+                        border-radius: 2px !important;
+                        border: 1px solid #222;
                     }
 
-
-
-                    .hotelListing-descriotion-price-btn {
-                        display: flex;
-                        justify-content: space-between;
-
-                        .price-btn-text-wrraper {
-                            .price-btn-text-wrraper-price {
-                                .price {
-                                    font-size: 24px;
-                                    font-weight: 700;
-                                }
-
-                                .strile-price {
-                                    text-decoration: line-through;
-                                    font-size: 16px;
-                                    color: #6d787d;
-                                    margin-right: 8px;
-                                    font-weight: 400;
-                                    line-height: 25px;
-                                }
-
-                                .percent-off {
-                                    font-size: 14px;
-                                    font-weight: 600;
-                                    color: #f5a623;
-                                    line-height: 25px;
-                                }
-
-                                #price-btn-text-wrraper-tax {
-                                    font-weight: 400;
-                                    line-height: 1em;
-                                    margin-top: 4px;
-                                    font-size: 12px;
-                                    color: #6d787d;
-                                }
-                            }
-                        }
-
-                        .price-btn-text-wrraper-buttoms {
-                            display: flex;
-                            align-items: center;
-                            gap: 5px;
-
-                            .view-details-btm {
-                                outline: none;
-                                font-weight: 700;
-                                font-size: 16px;
-                                line-height: 1.25em;
-                                width: auto;
-                                padding: 8px 16px !important;
-                                background-color: #fff;
-                                color: #222;
-                                border-radius: 2px !important;
-                                border: 1px solid #222;
-                            }
-
-                            .book-now-btm {
-                                font-weight: 700 !important;
-                                font-size: 16px !important;
-                                line-height: 1.25em;
-                                text-align: center;
-                                outline: none;
-                                padding: 8px 16px !important;
-                                width: auto !important;
-                                margin: 0 !important;
-                                background-color: #1ab64f;
-                                color: #fff;
-                                border-radius: 2px !important;
-                                border: 1px solid #1ab64f;
-                            }
-                        }
+                    .book-now-btm {
+                        font-weight: 700 !important;
+                        font-size: 16px !important;
+                        line-height: 1.25em;
+                        text-align: center;
+                        outline: none;
+                        padding: 8px 16px !important;
+                        width: auto !important;
+                        margin: 0 !important;
+                        background-color: #1ab64f;
+                        color: #fff;
+                        border-radius: 2px !important;
+                        border: 1px solid #1ab64f;
                     }
                 }
             }

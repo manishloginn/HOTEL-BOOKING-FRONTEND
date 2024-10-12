@@ -12,16 +12,15 @@ const TripsScreen = () => {
 
 
   return (
-    <div >
-      <div className="trip-wrraper">
-        <div className="filters">
-          <Filters />
-        </div >
-        <div className="HotelsList">
-          <HotelsList />
-        </div>
+
+    <div  >
+      <Navbar />
+      <div className="tripbox">
+        <Filters />
+        <HotelsList />
       </div>
     </div>
+
   );
 };
 

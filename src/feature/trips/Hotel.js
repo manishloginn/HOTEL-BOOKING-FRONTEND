@@ -9,7 +9,7 @@ const Hotel = ({ hotel }) => {
     return (
         <div className="hotel">
             <div className="left-section">
-                <h1>left</h1>
+                <h1>image</h1>
             </div>
             <div className="right-section">
                 <div className="hotelListing-descriotion-content">
@@ -41,14 +41,6 @@ const Hotel = ({ hotel }) => {
                             </div>
                             <div className="amenity-wrraper-amenity">
                                 <span className="amenity-text">+ 11 more</span>
-                            </div>
-                        </div>
-                        <div className="hotelListing-description-label">
-                            <div className="label-icon">
-                                <Wizard />
-                            </div>
-                            <div className="label-icon-text">
-                                WIZARD MEMBER
                             </div>
                         </div>
                     </div>
