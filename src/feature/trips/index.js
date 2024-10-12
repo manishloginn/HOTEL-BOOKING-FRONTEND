@@ -1,12 +1,19 @@
 import { useParams } from "react-router-dom";
 import Filters from "../filters";
 import Navbar from "../search/Navbar";
-import { useSelector } from "react-redux";
-import './style/trip.scss'
 
+import { useDispatch, useSelector } from "react-redux";
+
+
+
+import HotelsList from "./HotelsList";
+import './styles/index.scss'
+import { useEffect } from "react";
+import { storeData } from "./slice";
 
 const TripsScreen = () => {
   const params = useParams()
+  const dispatch = useDispatch()
 
   const data = useSelector((state) => state?.search?.hotelData?.data)
 
@@ -15,16 +22,22 @@ const TripsScreen = () => {
 
   console.log(filterData)
 
+  useEffect(()=> {
+    dispatch(storeData(filterData))
+  }, [dispatch])
+
   
 
   return (
-    <div >
+
+    <div  >
       <Navbar />
       <div className="tripbox">
         <Filters />
-        <p>This is the trips screen where user can find all trips</p>
+        <HotelsList  />
       </div>
     </div>
+
   );
 };
 
