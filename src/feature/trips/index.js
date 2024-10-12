@@ -4,7 +4,7 @@ import Navbar from "../search/Navbar";
 import { useSelector } from "react-redux";
 import './style/trip.scss'
 
-
+api
 
 const TripsScreen = () => {
   const params = useParams()
