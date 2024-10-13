@@ -5,11 +5,17 @@ import "./styles/index.scss"
 
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import { useNavigate, useParams } from "react-router-dom";
 
 
 const Hotel = ({ hotel }) => {
 
+    const params = useParams()
+
     const [activeIndex, setActiveIndex] = useState(0);
+
+
+    const navigate = useNavigate()
 
     const handlePrev = () => {
         setActiveIndex((prevIndex) => (prevIndex === 0 ? hotel.images.length - 1 : prevIndex - 1));
@@ -18,6 +24,15 @@ const Hotel = ({ hotel }) => {
     const handleNext = () => {
         setActiveIndex((prevIndex) => (prevIndex === hotel.images.length - 1 ? 0 : prevIndex + 1));
     };
+
+    const handelDetail = (e) => {
+
+
+        const hotelId = e.target.id
+        console.log(params)
+        
+        navigate(`/${hotelId}/${params.location}/${params.checkindate}/${params.checkoutdate}/${params.guest}`)
+    }
 
 
 
@@ -29,8 +44,8 @@ const Hotel = ({ hotel }) => {
                         <div className={`slide ${index === activeIndex ? 'active' : 'none'}`} key={index}>
                             <img src={image} alt={`Hotel Image ${index + 1}`} />
                             <div className="buttons">
-                                <ArrowBackIosNewOutlinedIcon onClick={handlePrev} />
-                                <ArrowForwardIosOutlinedIcon onClick={handleNext} />
+                                <ArrowBackIosNewOutlinedIcon className="arrowback" onClick={handlePrev} />
+                                <ArrowForwardIosOutlinedIcon className="arrowback"  onClick={handleNext} />
                             </div>
                         </div>
                     ))}
@@ -71,7 +86,7 @@ const Hotel = ({ hotel }) => {
 
 
                     <div className="price-btn-text-wrraper-buttoms">
-                        <button className="view-details-btm">View Details</button>
+                        <button onClick={handelDetail} id={hotel._id} className="view-details-btm">View Details</button>
                         <button className="book-now-btm">Book Now</button>
                     </div>
                 </div>

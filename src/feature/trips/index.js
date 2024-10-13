@@ -10,6 +10,9 @@ import HotelsList from "./HotelsList";
 import './styles/index.scss'
 import { useEffect } from "react";
 import { storeData } from "./slice";
+import { addHotelData } from "../search/slice";
+import request from "../../network/request";
+import Endpoints from "../../network/endpoints";
 
 const TripsScreen = () => {
   const params = useParams()
@@ -17,18 +20,33 @@ const TripsScreen = () => {
 
   const data = useSelector((state) => state?.search?.hotelData?.data)
 
-
-
+  const filterData = data?.filter((value) => value.location.toLowerCase().includes(params.location.toLowerCase()))
   // console.log(filterData)
 
+  // console.log(params)
+
+  dispatch(storeData(filterData))
+
   useEffect(()=> {
+    const hotelDetchData = async () => {
+      const httpConfig = {
+        url: Endpoints.hotelData,
+        method: "GET",
+      }
+      const result = await request(httpConfig)
+      if (result.success) {
+        dispatch(addHotelData(result.data))
+      } else {
+        console.error("Error fetching hotel data:", result.data);
+      }
+    }
+    hotelDetchData()
+
+   
+
+
     
-    const filterData = data?.filter((value) => value.location.toLowerCase().includes(params.location.toLowerCase()))
-    console.log(filterData)
-
-    console.log(params)
-
-    dispatch(storeData(filterData))
+  
   }, [dispatch])
 
   
