@@ -6,8 +6,6 @@ import './styles/index.scss'
 
 
 const HotelsList = () => {
-
-    
     const data = useSelector((state) => state.trips.data)
 
     return (

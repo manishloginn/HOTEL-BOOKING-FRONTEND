@@ -1,6 +1,6 @@
 .tripbox {
     display: grid;
-    grid-template-columns: 4fr 8fr;
+    grid-template-columns: 3fr 9fr;
     // background-color: blue;
     margin-top: 10px;
     padding: 10px;
@@ -39,27 +39,21 @@
 
 
     .hotel {
-        height: 50vh;
-        display: flex;
+        height: 100%;
+        // display: flex;
+        display: grid;
+        grid-template-columns: 4fr 8fr;
         justify-content: center;
         // border: 1px solid;
-        // padding: 10px;
+        padding: 10px;
 
-        .left-section {
-            height: 100%;
-            width: 40%;
-            background-color: burlywood;
 
-            h1 {
-                padding: 10px;
-            }
-        }
 
         .right-section {
             box-sizing: border-box;
             // height: 100%;
             height: fit-content;
-            width: 60%;
+            width: 100%;
             background-color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -72,10 +66,13 @@
                 flex-direction: column;
                 gap: 20px;
 
+                
+
                 .hotelListing-descriotion-content-wrraper {
                     display: flex;
                     flex-direction: column;
                     gap: 5px;
+
 
                     h3 {
                         font-size: 20px;
@@ -95,48 +92,21 @@
                     flex-direction: column;
                     gap: 15px;
 
-                    .hotel-rateing {
-                        width: 100%;
-                        display: flex;
-                        align-items: center;
 
-                        .hotel-rateing-wrraper {
-                            display: flex;
-                            gap: 20px;
-                            align-items: center;
-
-                            .star-wrraper {
-                                background-color: #52B520;
-                                color: #ffffff;
-                                width: 30px;
-                                padding: 1px 4px;
-                                border-radius: 2px;
-                                font-weight: 600;
-                                font-size: 12px;
-                                padding: 1px 6px;
-                            }
-
-                            .ratimg-text {
-                                font-size: 12px;
-                                color: #222;
-                                font-family: Inter, sans-serif;
-                                line-height: 1.2;
-                            }
-                        }
-                    }
+                   
 
                     .amenity-wrraper {
                         display: flex;
                         align-items: center;
                         gap: 15px;
-
+                        width: 100%;
                         .amenity-wrraper-amenity {
                             display: flex;
                             align-items: center;
                             gap: 8px;
 
                             .amenity-text {
-                                ont-size: 14px;
+                                font-size: 14px;
                                 line-height: 28px;
                                 color: #222;
                                 font-weight: 400;
@@ -152,9 +122,57 @@
             .hotelListing-descriotion-price-btn {
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                width: 100%;
+                padding: 10px;
+                // border: 1px solid;
 
-                .price-btn-text-wrraper {
+                .price-btn-text-wrraper-buttoms {
+                    display: flex;
+                    align-items: center;
+                    // border: 1px solid red;
+                    width: 50%;
+                    justify-content: space-evenly;
+                    flex-wrap: wrap;
+                    gap: 5px;
+
+                    .view-details-btm {
+                        outline: none;
+                        font-weight: 500;
+                        font-size: 12px;
+                        line-height: 1.25em;
+                        width: 40%;
+                        padding: 11px 8px !important;
+                        background-color: #fff;
+                        color: #222;
+                        border-radius: 2px !important;
+                        border: 1px solid #222;
+                    }
+
+                    .book-now-btm {
+                        font-weight: 700 !important;
+                        font-size: 16px !important;
+                        line-height: 1.25em;
+                        text-align: center;
+                        outline: none;
+                        padding: 8.5px 16px !important;
+                        margin: 0 !important;
+                        background-color: #1ab64f;
+                        color: #fff;
+                        border-radius: 2px !important;
+                        border: 1px solid #1ab64f;
+                    }
+                }
+                
+              
                     .price-btn-text-wrraper-price {
+                        
+                        width: 50%;
+                        // border: 1px solid;
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
                         .price {
                             font-size: 24px;
                             font-weight: 700;
@@ -184,43 +202,53 @@
                             color: #6d787d;
                         }
                     }
-                }
+                
 
-                .price-btn-text-wrraper-buttoms {
-                    display: flex;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    gap: 5px;
-
-                    .view-details-btm {
-                        outline: none;
-                        font-weight: 700;
-                        font-size: 16px;
-                        line-height: 1.25em;
-                        width: auto;
-                        padding: 8px 16px !important;
-                        background-color: #fff;
-                        color: #222;
-                        border-radius: 2px !important;
-                        border: 1px solid #222;
-                    }
-
-                    .book-now-btm {
-                        font-weight: 700 !important;
-                        font-size: 16px !important;
-                        line-height: 1.25em;
-                        text-align: center;
-                        outline: none;
-                        padding: 8px 16px !important;
-                        width: auto !important;
-                        margin: 0 !important;
-                        background-color: #1ab64f;
-                        color: #fff;
-                        border-radius: 2px !important;
-                        border: 1px solid #1ab64f;
-                    }
-                }
+               
             }
         }
     }
 }
+
+
+.left-section {
+    height: 100%;
+    // border: 1px solid;
+    .slides {
+        position: relative; // Make positioning relative for absolute child elements
+        width: 100%;
+        height: 100%; // Set height as needed (you can adjust this later)
+        overflow: hidden; // Hide overflow to prevent showing non-active images
+        // border: 1px solid blue;
+
+        .active{
+            width: 100%;
+            height: 100%; 
+            img {
+                width: 100%; // Make image take full width
+                height: 100%;
+                // border: 1px solid red;
+        
+            }
+        }
+    
+        .none {
+            display: none;
+        }
+    
+    
+       
+    
+    
+    }
+    
+    
+    .buttons {
+        display: flex;
+        justify-content: space-evenly;
+        // position: relative;
+        margin-top: -30px;
+        z-index: 1;
+    }
+}
+

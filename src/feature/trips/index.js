@@ -18,11 +18,16 @@ const TripsScreen = () => {
   const data = useSelector((state) => state?.search?.hotelData?.data)
 
 
-  const filterData = data?.filter((value) => value.location.toLowerCase().includes(params.location.toLowerCase()))
 
-  console.log(filterData)
+  // console.log(filterData)
 
   useEffect(()=> {
+    
+    const filterData = data?.filter((value) => value.location.toLowerCase().includes(params.location.toLowerCase()))
+    console.log(filterData)
+
+    console.log(params)
+
     dispatch(storeData(filterData))
   }, [dispatch])
 
