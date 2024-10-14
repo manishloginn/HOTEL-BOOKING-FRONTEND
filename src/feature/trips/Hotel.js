@@ -44,8 +44,8 @@ const Hotel = ({ hotel }) => {
                         <div className={`slide ${index === activeIndex ? 'active' : 'none'}`} key={index}>
                             <img src={image} alt={`Hotel Image ${index + 1}`} />
                             <div className="buttons">
-                                <ArrowBackIosNewOutlinedIcon className="arrowback" onClick={handlePrev} />
-                                <ArrowForwardIosOutlinedIcon className="arrowback"  onClick={handleNext} />
+                                <ArrowBackIosNewOutlinedIcon  className="arrowback" onClick={handlePrev} />
+                                <ArrowForwardIosOutlinedIcon  className="arrowback"  onClick={handleNext} />
                             </div>
                         </div>
                     ))}
