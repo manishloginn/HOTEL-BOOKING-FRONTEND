@@ -40,9 +40,9 @@ const Hotel = ({ hotel }) => {
         <div className="hotel">
             <div className="left-section" key={"image"}>
                 <div className="slides">
-                    {hotel.images.map((image, index) => (
+                    {hotel.images.map((item, index) => (
                         <div className={`slide ${index === activeIndex ? 'active' : 'none'}`} key={index}>
-                            <img src={image} alt={`Hotel Image ${index + 1}`} />
+                            <img src={item} alt={ index + 1} />
                             <div className="buttons">
                                 <ArrowBackIosNewOutlinedIcon  className="arrowback" onClick={handlePrev} />
                                 <ArrowForwardIosOutlinedIcon  className="arrowback"  onClick={handleNext} />

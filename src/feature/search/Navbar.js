@@ -1,22 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import "./style/navbar.scss"
+import NavLinks from './NavLinks'
 
 const Navbar = () => {
 
   return (
     <div className='container'>
-      <div className='navbar'>
-        <Link to="/">
-          <div className='logo'>
-            <span className='stay'>Stay</span>  Well</div>
-        </Link>
-        <div className='navbarlink'>
-          <Link to='#' > Create an Account </Link>
-          <Link to='#' > Sign In </Link>
-          <Link to='#' > Create An Account </Link>
-        </div>
-      </div>
+      <NavLinks />
     </div>
   )
 }
