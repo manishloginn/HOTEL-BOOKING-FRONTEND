@@ -42,7 +42,7 @@ const CitySearch = () => {
     new Set(cities?.data?.map((item) => item.location))
   )
 
-  
+
 
 
 
@@ -66,14 +66,14 @@ const CitySearch = () => {
 
   const onCheckinChange = (value) => {
     const date = value.format('YYYY-MM-DD');
-    if(date !== value){
+    if (date !== value) {
       setcheckinTrue(false)
       setcheckOutTrue(true)
     }
-    setformData((prev) => ({ 
-      ...prev, 
+    setformData((prev) => ({
+      ...prev,
       checkindate: date,
-      checkoutdate:dayjs(date).add(1, 'day').format('YYYY-MM-DD'),
+      checkoutdate: dayjs(date).add(1, 'day').format('YYYY-MM-DD'),
     }));
   };
 
@@ -107,15 +107,15 @@ const CitySearch = () => {
 
 
   const wrapperStyle = {
-    display:"flex",
-    justifyContext:"center",
-    flexDirection:"column",
-    textAlign:"center",
+    display: "flex",
+    justifyContext: "center",
+    flexDirection: "column",
+    textAlign: "center",
     width: 300,
     border: `1px solid lightGrey `,
     borderRadius: "10px",
     position: "absolute",
-    top: "370px",
+    // top: "370px",
   };
 
 
@@ -142,7 +142,7 @@ const CitySearch = () => {
     // console.log(e.target.innerText)
     setformData(prev => ({
       ...prev,
-      location:e.target.innerText
+      location: e.target.innerText
     }))
     settoggleCity(false)
   }
@@ -158,56 +158,67 @@ const CitySearch = () => {
 
       <div className="inputcontainer">
         <div className="inputfields">
-          <input className="cityname"
-            type="text"
-            name="location"
-            value={formData.location}
-            placeholder="Search City"
-            onChange={formchangeHandel}
-            onClick={() => settoggleCity((prev) => !prev)}
-          />
+          <div className="hovercity">
+            <input className="cityname"
+              type="text"
+              name="location"
+              value={formData.location}
+              placeholder="Search City"
+              onChange={formchangeHandel}
+              onClick={() => settoggleCity((prev) => !prev)}
+            />
 
-          {
-            toggleCity && 
-            <div className="hoverCities">
+            {
+              toggleCity &&
+              <div className="hoverCities">
+                {
+                  uniqueCities && uniqueCities.map((item) => (
+                    <div className="inner" key={item}>
+                      < LocationCityIcon />
+                      <span onClick={haldelSelectCity}>{item}</span>
+                    </div>
+
+                  ))
+                }
+              </div>
+            }
+          </div>
+
+          <div className="calender">
+            <div className="calenderhover">
+              <span className="dateshown">
+              <h5 onClick={haldelcheckinCalender}>{formData.checkindate} </h5>
+              </span>
               {
-                uniqueCities && uniqueCities.map((item) => (
-                  <div className="inner" key={item}>
-                    < LocationCityIcon />
-                    <span onClick={haldelSelectCity}>{item}</span>
-                  </div>
-
-                ))
+                checkinTrue && <div style={wrapperStyle}>
+                  <p>CHECK IN</p>
+                  <Calendar
+                    fullscreen={false}
+                    onChange={onCheckinChange}
+                    disabledDate={(current) => current && current < dayjs().startOf('day')}
+                  />
+                </div>
               }
             </div>
-          }
-          <div className="calender">
-            <p onClick={haldelcheckinCalender}>{formData.checkindate} </p>
-            {
-              checkinTrue && <div style={wrapperStyle}>
-                 <p>CHECK IN</p>
-                <Calendar
-                  fullscreen={false}
-                  onChange={onCheckinChange}
-                  disabledDate={(current) => current && current < dayjs().startOf('day')}
-                />
-              </div>
-            }
             <LineOutlined />
-            <p onClick={haldelCheckoutCalender}>{formData.checkoutdate}</p>
-            {
-              checkOutTrue && <div style={wrapperStyle}>
-                <p>CHECK OUT</p>
-                <Calendar
-                  fullscreen={false}
-                  onChange={onCheckOutChange}
-                  disabledDate={(current) => {
-                    const checkindate = dayjs(formData.checkindate).add(1, ('day'));
-                    return current && (current < checkindate || current < dayjs().startOf('day'))
-                  }}
-                />
-              </div>
-            }
+            <div className="calenderhover">
+            <span className="dateshown">
+              <h5 onClick={haldelCheckoutCalender}>{formData.checkoutdate}</h5>
+              </span>
+              {
+                checkOutTrue && <div style={wrapperStyle}>
+                  <p>CHECK OUT</p>
+                  <Calendar
+                    fullscreen={false}
+                    onChange={onCheckOutChange}
+                    disabledDate={(current) => {
+                      const checkindate = dayjs(formData.checkindate).add(1, ('day'));
+                      return current && (current < checkindate || current < dayjs().startOf('day'))
+                    }}
+                  />
+                </div>
+              }
+            </div>
           </div>
 
 

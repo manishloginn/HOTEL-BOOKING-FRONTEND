@@ -216,32 +216,35 @@
     height: 100%;
     // border: 1px solid;
     .slides {
-        position: relative; // Make positioning relative for absolute child elements
-        width: 100%;
-        height: 100%; // Set height as needed (you can adjust this later)
-        overflow: hidden; // Hide overflow to prevent showing non-active images
-        // border: 1px solid blue;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 10px;
+    transition: opacity 1s ease-in-out; // Transition for opacity
 
-        .active{
-            width: 100%;
-            height: 100%; 
-            img {
-                width: 100%; // Make image take full width
-                height: 100%;
-                // border: 1px solid red;
-        
-            }
+    .active {
+        opacity: 1;
+        transition: opacity 1s ease-in-out; // Ensure transition on active
+        height: 100%;
+        width: 100%;
+        // border: 1px solid red;
+        img {
+            width: 100%; // Make image take full width
+            height: 100%;
+           
+            // border: 1px solid red;
+    
         }
-    
-        .none {
-            display: none;
-        }
-    
-    
-       
-    
-    
     }
+
+    .none {
+        opacity: 0;
+        position: absolute; // Use absolute positioning to stack slides
+        transition: opacity 1s ease; // Ensure transition on none
+    }
+}
+
     
     
     .buttons {
