@@ -10,20 +10,16 @@
     .images {
         gap: 5px;
         display: flex;
-        // height: 100vh;
+        height: 50vh;
         overflow-x: scroll;
-
        
         img{
             width: 70vw;
-            height: 60vh;
+            height: 100%;
         }
     }
 }
 
-::-webkit-scrollbar{
-    width: 1px;
-}
 
 
 .hotelDetailbelow {
@@ -32,11 +28,97 @@
     // border: 1px solid;
     width: 95vw;
     margin: 1px auto;
+    gap: 50px;
     padding: 10px;
     .hotelDetail{
         gap: 20px;
         display: flex;
         flex-direction: column;
+        h3{
+            font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 18px;
+        }
+        .hotelLocation{
+            margin-top: -25px;
+            color: gray;
+        }
+        
+        .roomSelection{
+            // border: 1px solid;
+            margin-top: 10px;
+            gap: 10px;
+            .roomFilter {
+                padding: 10px;
+                gap: 10px;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                .roomcart {
+                   
+                    border-radius: 5px;
+                    .priceSection {
+                        height: 10vh;
+                        padding: 10px;
+                        border: 1px solid lightgray;
+                        border-top: none;
+                        display: flex;
+                        align-items: center;
+                        margin: 0;
+                        justify-content: space-between;
+                       
+                        .priceUpper {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            h3{
+                                margin: 0;
+                            }
+                        }
+                        .selectRoom{
+                            width: 12vw;
+                            height: 7vh;
+                            border-radius: 5px;
+                            display: flex;
+                            justify-content: center;
+                            border: 1px solid;
+                            button{
+                                background-color: transparent;
+                                border: none;
+                                outline: none;
+                                width: 100%;
+                            }
+                        }
+                       
+                    }
+                    .starCategary {
+                        display: flex;
+                        align-items: center;
+                        padding: 0px 10px;
+                        background-image: linear-gradient(to right, #797f9d, #d4d1da);
+                        border-radius: 5px 5px 0px 0px;
+                    }
+                    .roomcartDetail {
+                        padding: 10px;
+                        border: 1px solid lightgray;
+                      
+                    }
+                    .amenitiesss {
+                        // border: 1px solid brown;
+                        display: flex;
+                        gap: 10px;
+                        display: flex;
+                        align-items: center;
+                        .amenitiesssbelow {
+                            padding: 0px 10px;
+                            display: flex;
+                            gap: 10px;
+                        }
+                    }
+                }
+            }
+        }
+
         .hotelamenities {
             .amenityhead {
                 display: flex;
@@ -56,3 +138,7 @@
     }
 }
 
+
+::-webkit-scrollbar{
+    width: 1px;
+}

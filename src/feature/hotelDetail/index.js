@@ -4,10 +4,15 @@ import Endpoints from "../../network/endpoints";
 import request from "../../network/request";
 import { useDispatch, useSelector } from "react-redux";
 import { addRoomData } from "./slice";
+import "./style/hotelDetail.scss";
 
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
-import "./style/hotelDetail.scss";
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+
+
 import getAmenity from "../trips/getAmenity";
+import Navbar from "../search/Navbar";
+
 
 const HotelDetail = () => {
   const params = useParams();
@@ -15,6 +20,9 @@ const HotelDetail = () => {
 
   const hotelDetail = useSelector((state) => state.hotelDetail.data.hotelDetail);
   const roomDetail = useSelector((state) => state.hotelDetail.data.data);
+
+  console.log(hotelDetail)
+  console.log(roomDetail)
 
   useEffect(() => {
     const fetchHotel = async () => {
@@ -35,30 +43,14 @@ const HotelDetail = () => {
         console.error("Request failed:", error);
       }
     };
-
     fetchHotel();
   }, [params.hotelId, dispatch]);
 
-  const hotel = {
-    name: "The Grand Palace",
-    location: "New Delhi, India",
-    description: "A luxurious hotel in the heart of the city.",
-    amenities: ["Free Wi-Fi", "Swimming Pool", "Spa"],
-    images: [
-      "https://dummyimage.com/600x400/000/fff&text=The+Grand+Palace+1",
-      "https://dummyimage.com/600x400/000/fff&text=The+Grand+Palace+2",
-    ],
-    createdAt: "2023-07-12T10:00:00Z",
-    email: "info@grandpalacenewdelhi.com",
-    password: "12345",
-    role: "admin",
-    price: 900,
-  };
-
   return (
     <div className="hotelDetailContainer">
+      {/* <Navbar /> */}
       <div className="images">
-        {hotel.images.map((item, index) => (
+        {hotelDetail?.images.map((item, index) => (
           <div key={index}>
             <img src={item} alt={`Hotel ${index + 1}`} />
           </div>
@@ -66,12 +58,12 @@ const HotelDetail = () => {
       </div>
       <div className="hotelDetailbelow">
         <div className="hotelDetail">
-          <h3>{hotel.name}</h3>
-          <p style={{ color: "gray" }}>{hotel.location}</p>
+          <h1>{hotelDetail?.name}</h1>
+          <p className="hotelLocation">{hotelDetail?.location}</p>
           <div className="hotelamenities">
             <h3>Amenities</h3>
             <div className="amenityhead">
-              {hotel.amenities.map((item, index) => (
+              {hotelDetail?.amenities.map((item, index) => (
                 <div className="amenity-wrraper-amenity" key={index}>
                   <span className="amenity-icon">{getAmenity(item)}</span>
                   <span className="amenity-text">{item}</span>
@@ -81,23 +73,48 @@ const HotelDetail = () => {
           </div>
           <div>
             <h3>About this HOTEL</h3>
-            <p style={{ color: "gray" }}>{hotel.description}</p>
+            <p style={{ color: "gray" }}>{hotelDetail?.description}</p>
           </div>
-          <div>
+          <div className="roomSelection">
             <h3>Choose your room</h3>
-            {roomDetail?.length > 0 ? (
-              roomDetail.map((room, index) => (
-                <div key={index}>
-                  <p>
-                    <StarOutlinedIcon style={{ color: "yellow" }} /> Selected
-                    Category
-                  </p>
-                  <p>{room.roomtype}</p>
-                </div>
-              ))
-            ) : (
-              <p>No rooms available.</p>
-            )}
+            <div className="roomFilter">
+              {roomDetail?.length > 0 ? (
+                roomDetail.map((room, index) => (
+                  <div className="roomcart" key={index}>
+                    <div className="starCategary">
+                      <StarOutlinedIcon style={{ color: "yellow", fontSize: "15px" }} /> Selected
+                      <span> Category</span>
+                    </div>
+                    <div className="roomcartDetail">
+                      <h4>{room.roomtype} <span><CheckCircleRoundedIcon style={{ color: "Green" }} /></span></h4>
+                      <p>Room Capacity: Maximum {room.capacity} Guest</p>
+                      <div className="amenitiesss">
+                        {
+                          room.amenities.map((amenity) => (
+                            <div className="amenitiesssbelow">
+                              <span className="amenity-icon">{getAmenity(amenity)}</span>
+                              <span className="amenity-text">{amenity}</span>
+                            </div>
+                          ))
+                        }
+                      </div>
+
+                    </div>
+                    <div className="priceSection">
+                      <div className="priceUpper">
+                        <h3 className="price">₹{(hotelDetail.price - hotelDetail.price * 0.10).toFixed(2)}</h3>
+                        <span className="strile-price"><strike>₹{hotelDetail.price}</strike></span>
+                      </div>
+                      <div className="selectRoom">
+                        <button onClick={(e) => console.log(e.target.id)} id={room._id}>Selected</button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>No rooms available.</p>
+              )}
+            </div>
           </div>
         </div>
         <div>
