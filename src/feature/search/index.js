@@ -115,7 +115,7 @@ const CitySearch = () => {
     border: `1px solid lightGrey `,
     borderRadius: "10px",
     position: "absolute",
-    // top: "370px",
+    backgroundColor:"white"
   };
 
 
@@ -221,10 +221,10 @@ const CitySearch = () => {
             </div>
           </div>
 
-
+<div>
           <label className="inputlabel">
             <input
-              style={{ width: "30px" }}
+              style={{ width: "50px" }}
               type="text"
               name="guest"
               value={formData.guest}
@@ -233,6 +233,7 @@ const CitySearch = () => {
             />
             <UsergroupDeleteOutlined />
           </label>
+          </div>
 
           <button onClick={handelclick}>Search</button>
         </div>

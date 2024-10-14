@@ -13,9 +13,6 @@
     border-radius: 10px;
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
     padding: 10px;
-
-
-
 }
 
 .inputfields {
@@ -31,6 +28,7 @@
     gap: 10px;
     .hovercity {
         position: relative;
+        height: 100%;
 
         .hoverCities {
             position: absolute;
@@ -83,7 +81,7 @@
         // border: 1px solid;
         padding: 10px;
         background-color: rgba(255, 255, 255, 0.411);
-        width: 10%;
+        width: 20%;
         border-radius: 10px;
 
 
@@ -141,6 +139,9 @@
                 margin-bottom: 0;
                 align-items: center;
                 text-align: center;
+                h5{
+                    font-size: 16px;
+                }
             }
         }
     }
