@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Endpoints from "../../network/endpoints";
 import request from "../../network/request";
@@ -11,20 +11,26 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 
 import getAmenity from "../trips/getAmenity";
+import { Value } from "sass";
 
 
 const HotelDetail = () => {
   const params = useParams();
   const dispatch = useDispatch();
+  const [selectedRoom, setSelectedRoom] = useState('');
+  const [roomdata, Setroomdata] = useState([])
+
 
   const hotelDetail = useSelector((state) => state.hotelDetail.data.hotelDetail);
   const roomDetail = useSelector((state) => state.hotelDetail.data.data);
+
 
   console.log(hotelDetail)
   console.log(roomDetail)
 
   useEffect(() => {
     const fetchHotel = async () => {
+      console.log('hit')
       const httpConfig = {
         url: Endpoints.fetchSelectedHotel,
         method: "POST",
@@ -45,9 +51,14 @@ const HotelDetail = () => {
     fetchHotel();
   }, [params.hotelId, dispatch]);
 
+ 
+  console.log(selectedRoom)
 
   const onRoomSelect = (e) => {
-    console.log(e.target.id)
+    setSelectedRoom(e.target.id)
+    console.log(e.target.checked)
+    const filterroomByid = roomDetail.filter((value) => e.target.id === value._id)
+    console.log(filterroomByid)
   }
 
 
@@ -92,7 +103,7 @@ const HotelDetail = () => {
                       <span> Category</span>
                     </div>
                     <div className="roomcartDetail">
-                      <h4>{room.roomtype} <span><CheckCircleRoundedIcon style={{ color: "Green" }} /></span></h4>
+                      <h4>{room.roomtype} <span><CheckCircleRoundedIcon style={{ color: "#25D366" }} /></span></h4>
                       <p>Room Capacity: Maximum {room.capacity} Guest</p>
                       <div className="amenitiesss">
                         {
@@ -112,7 +123,14 @@ const HotelDetail = () => {
                         <span className="strile-price"><strike>₹{hotelDetail.price}</strike></span>
                       </div>
                       <div className="selectRoom">
-                        <button id={room._id} onClick={onRoomSelect}>Selected</button>
+
+                        <input
+                          id={room._id}
+                          name="roomSelection"
+                          type="radio"
+                          onChange={onRoomSelect}
+                        />
+                        <label htmlFor={room._id}>Selected</label>
                       </div>
                     </div>
                   </div>

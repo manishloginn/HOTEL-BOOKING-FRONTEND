@@ -18,8 +18,9 @@ import HvacRoundedIcon from '@mui/icons-material/HvacRounded';
 import BalconyRoundedIcon from '@mui/icons-material/BalconyRounded';
 import EmojiFoodBeverageRoundedIcon from '@mui/icons-material/EmojiFoodBeverageRounded';
 import HotTubRoundedIcon from '@mui/icons-material/HotTubRounded';
-// import KitchenRoundedIcon from '@mui/icons-material/KitchenRounded';
+import KitchenRoundedIcon from '@mui/icons-material/KitchenRounded';
 import BrunchDiningRoundedIcon from '@mui/icons-material/BrunchDiningRounded';
+import DeskRoundedIcon from '@mui/icons-material/DeskRounded';
 
 
 const getAmenity = (amenity) => {
@@ -29,8 +30,11 @@ const getAmenity = (amenity) => {
             return < BrunchDiningRoundedIcon style={{ color: "grey" }} />;
 
 
+            case "Desk":
+                return < DeskRoundedIcon style={{ color: "grey" }} />;
+    
         case "Refrigerator":
-            return < WifiOutlinedIcon style={{ color: "grey" }} />;
+            return < KitchenRoundedIcon style={{ color: "grey" }} />;
 
             
         case "Free Wi-Fi":
