@@ -5,6 +5,7 @@ const TripsScreen = lazy(() => import("./feature/trips/index"));
 const BookingScreen = lazy(() => import("./feature/booking/index"));
 const HotelDetail = lazy(() => import("./feature/hotelDetail/index"))
 
+
 const LazyLoadingWrapper = ({ Component }) => {
   return (
     <Suspense fallback={<h1>Loading ...</h1>}>

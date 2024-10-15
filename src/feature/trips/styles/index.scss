@@ -53,8 +53,8 @@
 
         .right-section {
             box-sizing: border-box;
-            // height: 100%;
             height: fit-content;
+            min-height: 100%;
             width: 100%;
             background-color: #ffffff;
             display: flex;

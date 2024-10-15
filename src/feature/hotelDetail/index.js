@@ -11,7 +11,7 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 
 import getAmenity from "../trips/getAmenity";
-import { Value } from "sass";
+import PriceCart from "./PriceCart";
 
 
 const HotelDetail = () => {
@@ -25,12 +25,12 @@ const HotelDetail = () => {
   const roomDetail = useSelector((state) => state.hotelDetail.data.data);
 
 
-  console.log(hotelDetail)
-  console.log(roomDetail)
+  // console.log(hotelDetail)
+  // console.log(roomDetail)
 
   useEffect(() => {
     const fetchHotel = async () => {
-      console.log('hit')
+      // console.log('hit')
       const httpConfig = {
         url: Endpoints.fetchSelectedHotel,
         method: "POST",
@@ -56,12 +56,13 @@ const HotelDetail = () => {
 
   const onRoomSelect = (e) => {
     setSelectedRoom(e.target.id)
-    console.log(e.target.checked)
+    // console.log(e.target.checked)
     const filterroomByid = roomDetail.filter((value) => e.target.id === value._id)
-    console.log(filterroomByid)
+    Setroomdata(filterroomByid)
   }
 
 
+  console.log(roomdata)
 
 
   return (
@@ -141,8 +142,8 @@ const HotelDetail = () => {
             </div>
           </div>
         </div>
-        <div>
-          <h1>Second</h1>
+        <div className="priceHeader">
+          <PriceCart roomdata={roomdata} />
         </div>
       </div>
     </div>

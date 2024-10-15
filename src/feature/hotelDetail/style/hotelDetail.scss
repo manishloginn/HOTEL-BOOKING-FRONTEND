@@ -25,12 +25,108 @@
 
 .hotelDetailbelow {
     display: grid;
-    grid-template-columns: 7fr 5fr;
+    grid-template-columns: 7.5fr 4.5fr;
     // border: 1px solid;
     width: 95vw;
     margin: 1px auto;
     gap: 50px;
-    padding: 10px;
+    padding: 40px 10px;
+    .priceHeader{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid gray;
+        box-shadow: 5px 5px 10px 8px rgba(0, 0, 0, 0.226);
+        border-radius: 10px;
+        padding: 20px;
+        .priceUpper {
+
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            
+            .submitButton {
+                width: 100%;
+                // border: 1px solid;
+                height: 10vh;
+                background-color: #1ab64f;
+                border-radius: 10px;
+                border: none;
+                button{
+                    height: 100%;
+                    width: 100%;
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                    font-size: 20px;
+                    color: white;
+                    font-weight: 800;
+                    &:active{
+                        background-color: white;
+                        color: black;
+                        border: 1px solid gray;
+                        border-radius: 10px;
+                    }
+
+                }
+                
+            }
+
+            .totalPriceContainer{
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                margin: auto;
+                align-items: center;
+                border-top: 1px dotted ;
+                padding: 40px 0px;
+            }
+            .roomType{
+                display: flex;
+                padding: 10px;
+                // border: 1px solid;
+                
+                box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.089);
+                .error{
+                    display: flex;
+                    // align-items: center;
+                    gap: 10px;
+                    margin: 0;
+                }
+            }
+
+            .calender {
+                display: flex;
+                // border: 1px solid;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 20px;
+                margin: 0px;
+                // width: 50%;
+                gap: 10px;
+                padding: 10px;
+                box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.089);
+                .calenderhover {
+                    
+                    .dateshown{
+                        
+                        h5{
+                            
+                            margin: 0px;
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+            .pricesection {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                h3{
+                    font-weight: 700;
+                }
+            }
+        }
+    }
 
     .hotelDetail {
         gap: 20px;
