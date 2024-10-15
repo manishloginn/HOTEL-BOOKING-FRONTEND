@@ -161,10 +161,10 @@ const PriceCart = ({ roomdata }) => {
                 </div>
 
                 <div className="submitButton">
-                    {roomdata.roomdata?.length > 0 ? (
-                        <button>Continue to Book</button>
+                    {roomdata?.length > 0 ? (
+                        <button >Continue to Book</button>
                     ) : (
-                        <button disabled>Continue to Book</button>
+                        <button disabled >Continue to Book</button>
                     )}
                 </div>
 
