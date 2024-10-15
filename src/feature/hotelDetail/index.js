@@ -100,8 +100,8 @@ const HotelDetail = () => {
                 roomDetail.map((room, index) => (
                   <div className="roomcart" key={index}>
                     <div className="starCategary">
-                      <StarOutlinedIcon style={{ color: "yellow", fontSize: "15px" }} /> Selected
-                      <span> Category</span>
+                      <StarOutlinedIcon style={{ color: "yellow", fontSize: "15px" }} />  
+                      <span>Selected Category</span>
                     </div>
                     <div className="roomcartDetail">
                       <h4>{room.roomtype} <span><CheckCircleRoundedIcon style={{ color: "#25D366" }} /></span></h4>

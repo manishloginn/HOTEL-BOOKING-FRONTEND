@@ -8,7 +8,7 @@ import { LineOutlined } from '@ant-design/icons';
 import ErrorIcon from '@mui/icons-material/Error';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 
-const PriceCart = (roomdata) => {
+const PriceCart = ({ roomdata }) => {
 
     const [checkinTrue, setcheckinTrue] = useState(false)
     const [checkOutTrue, setcheckOutTrue] = useState(false)
@@ -87,7 +87,7 @@ const PriceCart = (roomdata) => {
             <div className="priceUpper">
                 <div className='pricesection'>
                     <h3 >₹{(hotelDetail?.price - hotelDetail?.price * 0.10).toFixed(2)}</h3>
-                    <span ><strike  style={{color:"gray"}} >₹{hotelDetail?.price}</strike></span>
+                    <span ><strike style={{ color: "gray" }} >₹{hotelDetail?.price}</strike></span>
                 </div>
                 <div className="calender">
                     <div className="calenderhover">
@@ -135,9 +135,9 @@ const PriceCart = (roomdata) => {
 
 
                 <div className='roomType'>
-                    {Array.isArray(roomdata?.roomdata) && roomdata.roomdata.length > 0 ? (
-                        roomdata.roomdata.map((value, index) => (
-                            <div className='error'>
+                    {Array.isArray(roomdata) && roomdata.length > 0 ? (
+                        roomdata.map((value, index) => (
+                            <div className='error' key={index}>
                                 <span> <MeetingRoomIcon style={{ color: "gray" }} /> </span>
                                 <b key={index}>{value.roomtype}</b>
                             </div>
@@ -160,8 +160,12 @@ const PriceCart = (roomdata) => {
                     </div>
                 </div>
 
-                <div className='submitButton'>
-                    <button>Continue to Book</button>
+                <div className="submitButton">
+                    {roomdata.roomdata?.length > 0 ? (
+                        <button>Continue to Book</button>
+                    ) : (
+                        <button disabled>Continue to Book</button>
+                    )}
                 </div>
 
 
