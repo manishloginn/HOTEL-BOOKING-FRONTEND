@@ -44,6 +44,7 @@
 
     .hotel {
         height: 100%;
+        max-height: fit-content;
         // display: flex;
         display: grid;
         grid-template-columns: 4fr 8fr;
