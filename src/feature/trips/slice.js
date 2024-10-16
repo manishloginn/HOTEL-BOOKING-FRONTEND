@@ -4,14 +4,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const tripsSlice = createSlice({
   name: "trips",
   initialState: {
-    data:[]
+    data:[],
+    filterData: []
   },
   reducers: {
     storeData: (state, action) => {
       state.data = action.payload
+    },
+    addFilterData: (state,action)=>{
+      state.filterData = action.payload
     }
   },
 });
 
-export const {storeData} = tripsSlice.actions
+export const {storeData,addFilterData} = tripsSlice.actions
 export default tripsSlice;

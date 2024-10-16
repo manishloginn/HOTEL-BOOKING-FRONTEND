@@ -1,0 +1,83 @@
+.filter-section {
+    background: #F5F5F5;
+
+    .filters-heading {
+        padding: 10px;
+
+        span {
+            font-size: 26px;
+            font-weight: 700;
+            font-stretch: normal;
+            line-height: 1.23;
+            color: #333;
+            font-family: sans-serif;
+        }
+
+        h4 {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 24px;
+            margin: 4px auto 16px;
+            color: #222;
+            unicode-bidi: isolate;
+            font-family: sans-serif;
+        }
+    }
+
+    .filters-price {
+        padding: 10px;
+
+        h4 {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 24px;
+            margin: 4px auto 16px;
+            color: #222;
+        }
+
+        border-top: 1px solid #e3e3e3;
+        border-bottom: 1px solid #e3e3e3;
+    border-width: 90%;
+        .filters-price-wrraper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+
+            p {
+                font-size: 12px;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .accomadation-type {
+        padding: 10px;
+        border-bottom: 1px solid #e3e3e3;
+    border-width: 90%;
+        h4 {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 24px;
+            margin: 4px auto 16px;
+            color: #222;
+        }
+
+        .accomadation-type-wrraper {
+            height: 20vh;
+            overflow-y: scroll;
+
+            .accomadation-parent {
+                display: flex;
+                align-items: center;
+                justify-content: baseline;
+                gap: 10px;
+                span{
+                    font-size: 10px;
+                    font-family: serif;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
