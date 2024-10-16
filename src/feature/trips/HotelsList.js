@@ -1,31 +1,27 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Hotel from "./Hotel"
 import './styles/index.scss'
+import { useEffect } from "react"
+import { addFilterData } from "./slice"
 
 
 
 
 const HotelsList = () => {
     const data = useSelector((state) => state.trips.data)
+    const filterData  = useSelector((state)=>state.trips.filterData)
 
-    console.log(data)
-
-    const amenitiesss = Array.from(
-        new Set(data?.amenities?.map((item) => item.amenities))
-    )
-
-
-    console.log(amenitiesss)
-
-    // const uniqueCities = Array.from(
-    //     new Set(cities?.data?.map((item) => item.location))
-    //   )
-
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        if(data && data.length > 0){
+            dispatch(addFilterData(data))
+        }
+    },[data])
 
     return (
         <div className="hotel-list-wrraper">
             {
-            data?.map((hotel) => {
+            filterData?.map((hotel) => {
                 return <Hotel key={hotel.name} hotel={hotel} />
             })
         }
