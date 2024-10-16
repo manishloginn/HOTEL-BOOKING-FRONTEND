@@ -7,12 +7,17 @@ import { useParams } from 'react-router-dom';
 import { LineOutlined } from '@ant-design/icons';
 import ErrorIcon from '@mui/icons-material/Error';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import { bookingSend } from '../../utils';
 
 const PriceCart = ({ roomdata }) => {
 
     const [checkinTrue, setcheckinTrue] = useState(false)
     const [checkOutTrue, setcheckOutTrue] = useState(false)
     const [toggleCity, settoggleCity] = useState(false)
+
+    const roomId = useSelector((state) => state.hotelDetail.RoomId)
+    console.log(roomId)
+
     const params = useParams()
     console.log(params)
 
@@ -82,6 +87,7 @@ const PriceCart = ({ roomdata }) => {
         backgroundColor: "white"
     };
 
+    console.log(roomdata)
     return (
         <div>
             <div className="priceUpper">
@@ -137,11 +143,10 @@ const PriceCart = ({ roomdata }) => {
                 <div className='roomType'>
                     {Array.isArray(roomdata) && roomdata.length > 0 ? (
                         roomdata.map((value, index) => (
-                            <div className='error' key={index}>
+                            <div className='error' key={index} style={{ cursor: 'pointer' }}>
                                 <span> <MeetingRoomIcon style={{ color: "gray" }} /> </span>
                                 <b key={index}>{value.roomtype}</b>
                             </div>
-                            // <p key={index}>{value.roomtype}</p> 
                         ))
                     ) : (
                         <div className='error'>
@@ -159,17 +164,9 @@ const PriceCart = ({ roomdata }) => {
                         <b>₹{(hotelDetail?.price - hotelDetail?.price * 0.10).toFixed(0)}</b>
                     </div>
                 </div>
-
                 <div className="submitButton">
-                    {roomdata?.length > 0 ? (
-                        <button >Continue to Book</button>
-                    ) : (
-                        <button disabled >Continue to Book</button>
-                    )}
+                    <button id={roomId} onClick={() => bookingSend({roomId, formData})}>Continue to Book</button>
                 </div>
-
-
-
             </div>
         </div>
     )

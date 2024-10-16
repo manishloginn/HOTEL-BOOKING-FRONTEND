@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Endpoints from "../../network/endpoints";
 import request from "../../network/request";
 import { useDispatch, useSelector } from "react-redux";
-import { addRoomData } from "./slice";
+import { addRoomData, selectedRoomId } from "./slice";
 import "./style/hotelDetail.scss";
 
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
@@ -25,12 +25,9 @@ const HotelDetail = () => {
   const roomDetail = useSelector((state) => state.hotelDetail.data.data);
 
 
-  // console.log(hotelDetail)
-  // console.log(roomDetail)
 
   useEffect(() => {
     const fetchHotel = async () => {
-      // console.log('hit')
       const httpConfig = {
         url: Endpoints.fetchSelectedHotel,
         method: "POST",
@@ -56,7 +53,7 @@ const HotelDetail = () => {
 
   const onRoomSelect = (e) => {
     setSelectedRoom(e.target.id)
-    // console.log(e.target.checked)
+    dispatch(selectedRoomId(e.target.id))
     const filterroomByid = roomDetail.filter((value) => e.target.id === value._id)
     Setroomdata(filterroomByid)
   }

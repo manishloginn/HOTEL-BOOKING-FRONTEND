@@ -5,14 +5,18 @@ const hotelDetail = createSlice({
   name: "hotelDetail",
   initialState: {
     data:[],
-    hotelDetail:[]
+    hotelDetail:[],
+    RoomId:''
   },
   reducers: {
     addRoomData : (state, action) => {
       state.data = action.payload
+    },
+    selectedRoomId:(state, action)=>{
+      state.RoomId = action.payload
     }
   },
 });
 
-export const {addRoomData} = hotelDetail.actions
+export const {addRoomData, selectedRoomId} = hotelDetail.actions
 export default hotelDetail;

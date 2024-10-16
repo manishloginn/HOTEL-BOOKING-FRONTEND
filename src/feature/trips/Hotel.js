@@ -6,6 +6,8 @@ import "./styles/index.scss"
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import { useNavigate, useParams } from "react-router-dom";
+import Endpoints from "../../network/endpoints";
+import request from "../../network/request";
 
 
 const Hotel = ({ hotel }) => {
@@ -26,14 +28,38 @@ const Hotel = ({ hotel }) => {
     };
 
     const handelDetail = (e) => {
-
-
         const hotelId = e.target.id
         console.log(params)
-        
         navigate(`/${hotelId}/${params.location}/${params.checkindate}/${params.checkoutdate}/${params.guest}`)
     }
 
+const [selectedHotelId, setselectedHotelId] = useState('')
+
+    const fetchRoom = async () => {
+        const httpConfig = {
+            url: Endpoints.fetchRoom,
+            method: "get",
+            data: { hotelId: selectedHotelId }
+        }
+        console.log(httpConfig)
+        try {
+            const result = await request(httpConfig)
+            if (result.success) {
+                console.log("data successfull")
+                // console.log(result)
+            } else {
+                console.log("booking error")
+            }
+        } catch (error) {
+            console.error("Error fetching hotel data:", error);
+        }
+
+    }
+
+    const handelbookIntrip = (e) => {
+        setselectedHotelId(e.target.id)
+        fetchRoom()
+    }
 
 
     return (
@@ -42,10 +68,10 @@ const Hotel = ({ hotel }) => {
                 <div className="slides">
                     {hotel.images.map((item, index) => (
                         <div className={`slide ${index === activeIndex ? 'active' : 'none'}`} key={index}>
-                            <img src={item} alt={ index + 1} />
+                            <img src={item} alt={index + 1} />
                             <div className="buttons">
-                                <ArrowBackIosNewOutlinedIcon  className="arrowback" onClick={handlePrev} />
-                                <ArrowForwardIosOutlinedIcon  className="arrowback"  onClick={handleNext} />
+                                <ArrowBackIosNewOutlinedIcon className="arrowback" onClick={handlePrev} />
+                                <ArrowForwardIosOutlinedIcon className="arrowback" onClick={handleNext} />
                             </div>
                         </div>
                     ))}
@@ -87,7 +113,7 @@ const Hotel = ({ hotel }) => {
 
                     <div className="price-btn-text-wrraper-buttoms">
                         <button onClick={handelDetail} id={hotel._id} className="view-details-btm">View Details</button>
-                        <button className="book-now-btm">Book Now</button>
+                        <button className="book-now-btm" id={hotel._id} onChange={handelbookIntrip} >Book Now</button>
                     </div>
                 </div>
             </div>
