@@ -1,8 +1,17 @@
 .filter-section {
-    background: #F5F5F5;
+    background: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    height: 100%;
+    overflow-x: scroll;
 
     .filters-heading {
+
+        background-color: white;
         padding: 10px;
+        border-radius: 10px;
 
         span {
             font-size: 26px;
@@ -25,7 +34,9 @@
     }
 
     .filters-price {
+        background-color: white;
         padding: 10px;
+        border-radius: 10px;
 
         h4 {
             font-size: 14px;
@@ -52,9 +63,12 @@
     }
 
     .accomadation-type {
-        padding: 10px;
         border-bottom: 1px solid #e3e3e3;
     border-width: 90%;
+    
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
         h4 {
             font-size: 14px;
             font-weight: 700;
@@ -72,10 +86,10 @@
                 align-items: center;
                 justify-content: baseline;
                 gap: 10px;
-                span{
-                    font-size: 10px;
+                label{
+                    font-size: 16px;
                     font-family: serif;
-                    font-weight: 700;
+                    font-weight: 500;
                 }
             }
         }

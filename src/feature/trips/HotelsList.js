@@ -12,6 +12,7 @@ const HotelsList = () => {
     const filterData  = useSelector((state)=>state.trips.filterData)
 
     const dispatch = useDispatch()
+    
     useEffect(()=>{
         if(data && data.length > 0){
             dispatch(addFilterData(data))

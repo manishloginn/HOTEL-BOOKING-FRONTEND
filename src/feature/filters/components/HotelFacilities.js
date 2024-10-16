@@ -35,10 +35,11 @@ const HotelFacilities = () => {
                     amenitiess.map((amenity) => {
                         return <div key={amenity} className='accomadation-parent'>
                             <Checkbox
+                                id={amenity}
                                 value={amenity}
                                 onChange={handelCheck}
                             />
-                            <span>{amenity}</span>
+                            <label htmlFor={amenity}>{amenity}</label>
                         </div>
                     })
                 }

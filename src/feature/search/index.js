@@ -50,6 +50,7 @@ const CitySearch = () => {
     if (!formData.location || !formData.checkindate || !formData.checkoutdate || !formData.guest) {
       alert('please fill all detail')
     } else {
+      
       navigate(`search/${formData.location}/${formData.checkindate}/${formData.checkoutdate}/${formData.guest}`)
     }
   }

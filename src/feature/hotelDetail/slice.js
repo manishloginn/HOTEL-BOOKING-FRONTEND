@@ -6,7 +6,10 @@ const hotelDetail = createSlice({
   initialState: {
     data:[],
     hotelDetail:[],
-    RoomId:''
+    RoomId:'',
+    checkinDate:'',
+    checkOutDate:'',
+    guest:null
   },
   reducers: {
     addRoomData : (state, action) => {

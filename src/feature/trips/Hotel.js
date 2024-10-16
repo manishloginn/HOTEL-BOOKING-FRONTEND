@@ -35,29 +35,32 @@ const Hotel = ({ hotel }) => {
 
 const [selectedHotelId, setselectedHotelId] = useState('')
 
-    const fetchRoom = async () => {
-        const httpConfig = {
-            url: Endpoints.fetchRoom,
-            method: "get",
-            data: { hotelId: selectedHotelId }
-        }
-        console.log(httpConfig)
-        try {
-            const result = await request(httpConfig)
-            if (result.success) {
-                console.log("data successfull")
-                // console.log(result)
-            } else {
-                console.log("booking error")
-            }
-        } catch (error) {
-            console.error("Error fetching hotel data:", error);
-        }
-
-    }
-
+    
     const handelbookIntrip = (e) => {
         setselectedHotelId(e.target.id)
+        const hotelId = e.target.id
+        console.log(hotelId)
+
+        const fetchRoom = async () => {
+            const httpConfig = {
+                url: Endpoints.fetchRoom,
+                method: "POST",
+                data: { hotelId: hotelId }
+            }
+            console.log(httpConfig)
+            try {
+                const result = await request(httpConfig)
+                if (result.success) {
+                   console.log(result.data.data[0].Id)
+                } else {
+                    console.log("booking error")
+                }
+            } catch (error) {
+                console.error("Error fetching hotel data:", error);
+            }
+    
+        }
+    
         fetchRoom()
     }
 
@@ -113,7 +116,7 @@ const [selectedHotelId, setselectedHotelId] = useState('')
 
                     <div className="price-btn-text-wrraper-buttoms">
                         <button onClick={handelDetail} id={hotel._id} className="view-details-btm">View Details</button>
-                        <button className="book-now-btm" id={hotel._id} onChange={handelbookIntrip} >Book Now</button>
+                        <button className="book-now-btm" id={hotel._id} onClick={handelbookIntrip} >Book Now</button>
                     </div>
                 </div>
             </div>
