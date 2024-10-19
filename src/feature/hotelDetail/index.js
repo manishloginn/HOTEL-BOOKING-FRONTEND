@@ -17,13 +17,12 @@ import PriceCart from "./PriceCart";
 const HotelDetail = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const [selectedRoom, setSelectedRoom] = useState('');
+  // const [selectedRoom, setSelectedRoom] = useState('');
   const [roomdata, Setroomdata] = useState([])
 
 
   const hotelDetail = useSelector((state) => state.hotelDetail.data.hotelDetail);
   const roomDetail = useSelector((state) => state.hotelDetail.data.data);
-
 
 
   useEffect(() => {
@@ -49,17 +48,16 @@ const HotelDetail = () => {
   }, [params.hotelId, dispatch]);
 
  
-  console.log(selectedRoom)
+  // console.log(selectedRoom)
 
   const onRoomSelect = (e) => {
-    setSelectedRoom(e.target.id)
     dispatch(selectedRoomId(e.target.id))
     const filterroomByid = roomDetail.filter((value) => e.target.id === value._id)
     Setroomdata(filterroomByid)
   }
 
 
-  console.log(roomdata)
+  // console.log(roomdata)
 
 
   return (

@@ -23,6 +23,10 @@ const TripsScreen = () => {
   const filterData = data?.filter((value) => value.location.toLowerCase().includes(params.location.toLowerCase()))
   // console.log(filterData)
 
+  
+  // const tripValue = useSelector((value) => value.search.searchData)
+  // // console.log(tripValue)
+
   // console.log(params)
 
   dispatch(storeData(filterData))
@@ -41,12 +45,6 @@ const TripsScreen = () => {
       }
     }
     hotelDetchData()
-
-   
-
-
-    
-  
   }, [dispatch])
 
   

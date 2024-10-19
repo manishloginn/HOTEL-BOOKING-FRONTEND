@@ -13,23 +13,22 @@ const PriceRange = () => {
   const minPrice = prices.length ? Math.min(...prices) : 0;
   const maxPrice = prices.length ? Math.max(...prices) : 10;
 
-  // State for range values
+ 
   const [range, setRange] = useState([minPrice, maxPrice]);
-
-  // Update range when prices are fetched or changed
-  useEffect(() => {
+  
+useEffect(() => {
     setRange([minPrice, maxPrice]);
   }, [minPrice, maxPrice]);
 
-  // Handle change during slide
+ 
   const handlePriceRange = (value) => {
-    setRange(value); // Update the state as the slider moves
-    console.log('Sliding Range:', value);
+    setRange(value); 
+    // console.log('Sliding Range:', value);
   };
 
-  // Handle range selection after sliding stops
+  
   const handleAfterChange = (value) => {
-    console.log('Final Selected Range:', value);
+    // console.log('Final Selected Range:', value);
     const [min, max] = value;
     const filteredData = state.filter(
       (hotel) => hotel.price >= min && hotel.price <= max

@@ -2,7 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // TODO: write the logic as per the need
 const initialState = {
-  hotelData:[]
+  hotelData:[],
+  searchData:{
+    location:'',
+    checkindate:'',
+    checkoutdate:'',
+    guest:0
+  }
 }
 
 const searchSlice = createSlice({
@@ -12,10 +18,17 @@ const searchSlice = createSlice({
   },
   reducers: {
     addHotelData : (state, action) => {
+      
       state.hotelData = action.payload
+    },
+    
+    addSearchValue : (state, action) => {
+      
+      // const [key, value] = action.payload
+      state.searchData = action.payload
     }
   },
 });
 
-export const {addHotelData} = searchSlice.actions
+export const {addHotelData, addSearchValue} = searchSlice.actions
 export default searchSlice;

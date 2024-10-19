@@ -5,16 +5,18 @@ import "./styles/index.scss"
 
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Endpoints from "../../network/endpoints";
 import request from "../../network/request";
+import { useSelector } from "react-redux";
+import { bookingSend } from "../../utils";
 
 
 const Hotel = ({ hotel }) => {
 
-    const params = useParams()
-
     const [activeIndex, setActiveIndex] = useState(0);
+
+    const formData = useSelector((state) => state.search.searchData)
 
 
     const navigate = useNavigate()
@@ -29,17 +31,12 @@ const Hotel = ({ hotel }) => {
 
     const handelDetail = (e) => {
         const hotelId = e.target.id
-        console.log(params)
-        navigate(`/${hotelId}/${params.location}/${params.checkindate}/${params.checkoutdate}/${params.guest}`)
+        navigate(`/${hotelId}/${formData.location}/${formData.checkindate}/${formData.checkoutdate}/${formData.guest}`)
     }
 
-const [selectedHotelId, setselectedHotelId] = useState('')
-
-    
     const handelbookIntrip = (e) => {
-        setselectedHotelId(e.target.id)
         const hotelId = e.target.id
-        console.log(hotelId)
+        // console.log(hotelId)
 
         const fetchRoom = async () => {
             const httpConfig = {
@@ -47,11 +44,14 @@ const [selectedHotelId, setselectedHotelId] = useState('')
                 method: "POST",
                 data: { hotelId: hotelId }
             }
-            console.log(httpConfig)
+            // console.log(httpConfig)
             try {
                 const result = await request(httpConfig)
+                // console.log(result)
                 if (result.success) {
-                   console.log(result.data.data[0].Id)
+                //    console.log(result.data.data[0]._id)
+                   const roomId = result.data.data[0]._id
+                   bookingSend({roomId, formData})
                 } else {
                     console.log("booking error")
                 }

@@ -4,6 +4,8 @@ import request from "./network/request"
 export const bookingSend = ({ roomId, formData }) => {
     // console.log(e.target.id)
 
+    // console.log(formData)
+
     if (!roomId) {
         return alert('please select room first')
     }
@@ -19,12 +21,11 @@ export const bookingSend = ({ roomId, formData }) => {
                 guest: formData.guest
             }
         }
-        console.log(httpConfig)
+        // console.log(httpConfig)
 
         try {
             const result = await request(httpConfig)
             if (result.success) {
-
                 if (result.data.status === 401) {
                     alert("login first")
                 } else {

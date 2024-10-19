@@ -17,12 +17,14 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import dayjs from "dayjs";
 import Endpoints from "../../network/endpoints";
 import request from "../../network/request";
-import { addHotelData } from "./slice";
+import { addHotelData, addSearchValue } from "./slice";
 
 
 
 const CitySearch = () => {
 
+  
+  const dispatch = useDispatch()
 
   const [toggleCity, settoggleCity] = useState(false)
   const [formData, setformData] = useState({
@@ -44,13 +46,16 @@ const CitySearch = () => {
 
 
 
-
-
+  // console.log(formData)
   const handelclick = () => {
     if (!formData.location || !formData.checkindate || !formData.checkoutdate || !formData.guest) {
       alert('please fill all detail')
     } else {
-      
+      // Object.entries(formData).forEach(([key, value] ) => {
+      //   console.log(formData)
+        // dispatch(addSearchValue({key, value}))
+      // })
+      dispatch(addSearchValue(formData))
       navigate(`search/${formData.location}/${formData.checkindate}/${formData.checkoutdate}/${formData.guest}`)
     }
   }
@@ -121,7 +126,6 @@ const CitySearch = () => {
 
 
 
-  const dispatch = useDispatch()
   useEffect(() => {
 
     const hotelDetchData = async () => {
@@ -238,10 +242,7 @@ const CitySearch = () => {
 
           <button onClick={handelclick}>Search</button>
         </div>
-
-
       </div>
-
     </div>
   );
 };

@@ -17,7 +17,7 @@ const HotelsList = () => {
         if(data && data.length > 0){
             dispatch(addFilterData(data))
         }
-    },[data])
+    }, [data, dispatch])
 
     return (
         <div className="hotel-list-wrraper">

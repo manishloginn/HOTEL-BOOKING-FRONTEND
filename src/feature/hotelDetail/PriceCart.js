@@ -2,7 +2,6 @@ import { Calendar } from 'antd';
 import dayjs from 'dayjs';
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { LineOutlined } from '@ant-design/icons';
 import ErrorIcon from '@mui/icons-material/Error';
@@ -16,10 +15,11 @@ const PriceCart = ({ roomdata }) => {
     const [toggleCity, settoggleCity] = useState(false)
 
     const roomId = useSelector((state) => state.hotelDetail.RoomId)
-    console.log(roomId)
+    // console.log(roomId)
 
-    const params = useParams()
-    console.log(params)
+    const params = useSelector((state) => state.search.searchData)
+    // console.log(params)
+
 
     const [formData, setformData] = useState({
         checkindate: params.checkindate,
@@ -28,7 +28,7 @@ const PriceCart = ({ roomdata }) => {
     })
 
     const hotelDetail = useSelector((state) => state.hotelDetail.data.hotelDetail);
-    console.log(hotelDetail)
+    // console.log(hotelDetail)
 
 
     const haldelcheckinCalender = (e) => {
@@ -87,7 +87,7 @@ const PriceCart = ({ roomdata }) => {
         backgroundColor: "white"
     };
 
-    console.log(roomdata)
+    // console.log(roomdata)
     return (
         <div>
             <div className="priceUpper">
