@@ -1,0 +1,153 @@
+.login-page {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ECF3FB;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    .login-wrraper {
+        height: 65%;
+        width: 34%;
+        background-color: #FFFFFF;
+        padding: 8px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+
+        .login-heading {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 20px;
+
+            h2 {
+                font-size: 26px;
+                font-weight: 600;
+                font-style: bold;
+
+                span {
+                    height: 26px;
+                    width: 10px;
+                }
+            }
+
+            span {
+                color: #CFD2DB;
+            }
+        }
+
+        form {
+            flex: 2;
+            background-color: #F5F6FA;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            border-radius: 10px;
+            padding: 20px;
+
+            .login-input-wrraper {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                label {
+                    font-weight: 500;
+                    font-size: 18px;
+                }
+
+                input {
+                    border: none;
+                    outline: none;
+                    background-color: #FFFFFF;
+                    padding: 5px;
+                    border-radius: 5px;
+                    caret-color: #B4BAC2;
+
+                }
+
+                input::placeholder {
+                    color: #B4BAC2;
+                }
+
+                span {
+                    color: #5678E1;
+                    font-weight: 600;
+
+                    &:hover {
+                        font-weight: 700;
+                        cursor: pointer;
+                        transition: ease-in-out 0.2s;
+                    }
+                }
+            }
+
+            .login-button {
+                background-color: #2071FF;
+                border: none;
+                outline: none;
+                height: 20%;
+                text-align: center;
+                padding: 5px;
+                border-radius: 5px;
+                font-size: 18px;
+                color: white;
+                font-weight: 700;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.9;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    .register-wrraper {
+        p {
+            color: #949FB1;
+        }
+
+        span {
+            color: #728EC1;
+            font-weight: 500;
+
+            &:hover {
+                font-weight: 700;
+                transition: ease-in-out .2s;
+            }
+        }
+    }
+}
+
+@media (min-width: 350px) and (max-width: 480px) {
+    .login-page {
+        gap: 10px;
+        .login-wrraper {
+            width: 90%;
+        }
+    }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+    .login-page {
+        gap: 10px;
+        .login-wrraper {
+            width: 80%;
+        }
+    }
+}
+
+@media (min-width: 768px) and  (max-width: 1080px) {
+    .login-page {
+        gap: 10px;
+        .login-wrraper {
+            width: 45%;
+        }
+    }
+}

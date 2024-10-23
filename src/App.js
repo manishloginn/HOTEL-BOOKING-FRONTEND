@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoginPage from "./feature/auth/LoginPage";
 const Search = lazy(() => import("./feature/search/index"));
 const TripsScreen = lazy(() => import("./feature/trips/index"));
 const BookingScreen = lazy(() => import("./feature/booking/index"));
@@ -32,6 +33,10 @@ const App = () => {
       <Route
         path="/book"
         element={<LazyLoadingWrapper Component={BookingScreen} />}
+      />
+      <Route 
+      path="/login"
+      element={<LazyLoadingWrapper Component={LoginPage }/>}
       />
     </Routes>
   </BrowserRouter>
