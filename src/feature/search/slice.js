@@ -2,33 +2,33 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // TODO: write the logic as per the need
 const initialState = {
-  hotelData:[],
-  searchData:{
-    location:'',
-    checkindate:'',
-    checkoutdate:'',
-    guest:0
-  }
+  hotelData: [],
+  searchData: {
+    location: '',
+    checkindate: '',
+    checkoutdate: '',
+    guest: 0
+  },
+  togglePopup: false
 }
 
 const searchSlice = createSlice({
   name: "search",
-  initialState: {
-    initialState,
-  },
+  initialState,
   reducers: {
-    addHotelData : (state, action) => {
-      
+    addHotelData: (state, action) => {
+
       state.hotelData = action.payload
     },
-    
-    addSearchValue : (state, action) => {
-      
-      // const [key, value] = action.payload
-      state.searchData = action.payload
-    }
+
+    addSearchValue: (state, action) => {
+      state.searchData = { ...state.searchData, ...action.payload };
+    },
+    toggleLogin: (state) => {
+      state.togglePopup = !state.togglePopup;
+    },
   },
 });
 
-export const {addHotelData, addSearchValue} = searchSlice.actions
+export const { addHotelData, addSearchValue, toggleLogin } = searchSlice.actions
 export default searchSlice;

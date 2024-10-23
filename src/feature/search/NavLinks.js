@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import LoginPage from "../auth/LoginPage"
 
@@ -6,15 +6,17 @@ import "./style/navbar.scss"
 
 
 import { motion } from "framer-motion"
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleLogin } from './slice'
 
-export const LoginCallint = ({ settogglePopup }) => {
+export const LoginCalling = () => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <LoginPage settogglePopup={settogglePopup} />
+      <LoginPage  />
     </motion.div>
   )
 }
@@ -22,12 +24,15 @@ export const LoginCallint = ({ settogglePopup }) => {
 
 const NavLinks = () => {
 
-  const [togglePopup, settogglePopup] = useState(false)
+  // const [togglePopup, settogglePopup] = useState(false)
+  const dispatch=useDispatch()
+
+  const togglePopup = useSelector((state) => state.search.togglePopup)
+
+  
   const showLoginPopup = () => {
-    settogglePopup(prev => !prev)
+    dispatch(toggleLogin())
   }
-
-
 
   return (
     <>
@@ -46,7 +51,7 @@ const NavLinks = () => {
 
 
       {togglePopup && (
-        <LoginCallint settogglePopup={settogglePopup} />
+        <LoginCalling  />
       )}
     </>
   )

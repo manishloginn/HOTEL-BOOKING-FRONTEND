@@ -1,15 +1,16 @@
+import { useDispatch } from 'react-redux'
 import './styles/LoginPage.scss'
+import { toggleLogin } from '../search/slice'
 const
     LoginPage = ({ settogglePopup }) => {
 
-
-        console.log(settogglePopup)
+        const dispatch=useDispatch()
 
 
         return (
             <div className="login-page show">
                 <div className="login-wrraper">
-                    <span className='closethis' onClick={() => settogglePopup(prev => !prev)}>X</span>
+                    <span className='closethis' onClick={() => dispatch(toggleLogin())}>X</span>
                     <div className='login-heading'>
                         <h2>Welcome Back <span>👏</span></h2>
                         <span>Let's explore the app again with us.</span>

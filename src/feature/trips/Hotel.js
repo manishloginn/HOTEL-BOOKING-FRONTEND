@@ -8,15 +8,17 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 import { useNavigate } from "react-router-dom";
 import Endpoints from "../../network/endpoints";
 import request from "../../network/request";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { bookingSend } from "../../utils";
 
 
 const Hotel = ({ hotel }) => {
 
+    const dispatch = useDispatch()
     const [activeIndex, setActiveIndex] = useState(0);
 
     const formData = useSelector((state) => state.search.searchData)
+
 
 
     const navigate = useNavigate()
@@ -49,9 +51,8 @@ const Hotel = ({ hotel }) => {
                 const result = await request(httpConfig)
                 // console.log(result)
                 if (result.success) {
-                //    console.log(result.data.data[0]._id)
                    const roomId = result.data.data[0]._id
-                   bookingSend({roomId, formData})
+                   bookingSend({roomId, formData, dispatch})
                 } else {
                     console.log("booking error")
                 }

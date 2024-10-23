@@ -1,7 +1,7 @@
 import { Calendar } from 'antd';
 import dayjs from 'dayjs';
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { LineOutlined } from '@ant-design/icons';
 import ErrorIcon from '@mui/icons-material/Error';
@@ -10,6 +10,7 @@ import { bookingSend } from '../../utils';
 
 const PriceCart = ({ roomdata }) => {
 
+    const dispatch = useDispatch()
     const [checkinTrue, setcheckinTrue] = useState(false)
     const [checkOutTrue, setcheckOutTrue] = useState(false)
     const [toggleCity, settoggleCity] = useState(false)
@@ -20,6 +21,9 @@ const PriceCart = ({ roomdata }) => {
     const params = useSelector((state) => state.search.searchData)
     // console.log(params)
 
+    const popup = useSelector((state) => state.search.togglePopup)
+
+    console.log(popup)
 
     const [formData, setformData] = useState({
         checkindate: params.checkindate,
@@ -72,6 +76,8 @@ const PriceCart = ({ roomdata }) => {
         }, 100);
 
     }
+
+  
 
 
 
@@ -165,7 +171,9 @@ const PriceCart = ({ roomdata }) => {
                     </div>
                 </div>
                 <div className="submitButton">
-                    <button id={roomId} onClick={() => bookingSend({roomId, formData})}>Continue to Book</button>
+                    <button id={roomId} onClick={() => 
+                        bookingSend({roomId, formData, dispatch})         
+                        }>Continue to Book</button>
                 </div>
             </div>
         </div>

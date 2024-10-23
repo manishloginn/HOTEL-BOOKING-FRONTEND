@@ -1,10 +1,16 @@
 import Endpoints from "./network/endpoints"
 import request from "./network/request"
+import { toggleLogin } from "./feature/search/slice"
 
-export const bookingSend = ({ roomId, formData }) => {
-    // console.log(e.target.id)
 
+
+export const bookingSend = ({ roomId, formData, dispatch }) => {
+
+    
+    // console.log(roomId)
     // console.log(formData)
+    // console.log(dispatch)
+    // // console.log(roomId)
 
     if (!roomId) {
         return alert('please select room first')
@@ -21,13 +27,13 @@ export const bookingSend = ({ roomId, formData }) => {
                 guest: formData.guest
             }
         }
-        // console.log(httpConfig)
 
         try {
             const result = await request(httpConfig)
             if (result.success) {
                 if (result.data.status === 401) {
-                    alert("login first")
+                    alert('hit')
+                    dispatch(toggleLogin())
                 } else {
                     console.log("booking successfull")
                 }
@@ -38,7 +44,6 @@ export const bookingSend = ({ roomId, formData }) => {
         } catch (error) {
             console.error("Request failed:", error);
         }
-        // console.log(httpConfig)
     }
 
     roomBook()
