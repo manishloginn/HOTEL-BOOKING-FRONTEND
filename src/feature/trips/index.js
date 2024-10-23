@@ -13,7 +13,6 @@ import { storeData } from "./slice";
 import { addHotelData } from "../search/slice";
 import request from "../../network/request";
 import Endpoints from "../../network/endpoints";
-import { notification } from "antd";
 
 const TripsScreen = () => {
   const params = useParams()
