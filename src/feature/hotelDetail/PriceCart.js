@@ -8,6 +8,7 @@ import ErrorIcon from '@mui/icons-material/Error';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { bookingSend } from '../../utils';
 import { LoginCalling } from '../search/NavLinks';
+import { useParams } from 'react-router-dom';
 
 const PriceCart = ({ roomdata }) => {
 
@@ -25,6 +26,8 @@ const PriceCart = ({ roomdata }) => {
     const popup = useSelector((state) => state.search.togglePopup)
 
     console.log(popup)
+
+    const urlparams = useParams()
 
 
     const [formData, setformData] = useState({
@@ -106,12 +109,12 @@ const PriceCart = ({ roomdata }) => {
             <div className="priceUpper">
                 <div className='pricesection'>
                     <h3 >₹{(hotelDetail?.price - hotelDetail?.price * 0.10).toFixed(2)}</h3>
-                    <span ><strike style={{ color: "gray" }} >₹{hotelDetail?.price}</strike></span>
+                    <span ><strike style={{ color: "gray" }} >₹{hotelDetail?.price }</strike></span>
                 </div>
                 <div className="calender">
                     <div className="calenderhover">
                         <span className="dateshown">
-                            <h5 onClick={haldelcheckinCalender}>{formData.checkindate} </h5>
+                            <h5 onClick={haldelcheckinCalender}>{formData.checkindate ? formData.checkindate : urlparams.checkindate} </h5>
                         </span>
                         {
                             checkinTrue && <div style={wrapperStyle}>
@@ -127,7 +130,7 @@ const PriceCart = ({ roomdata }) => {
                     <LineOutlined />
                     <div className="calenderhover">
                         <span className="dateshown">
-                            <h5 onClick={haldelCheckoutCalender}>{formData.checkoutdate}</h5>
+                            <h5 onClick={haldelCheckoutCalender}>{formData.checkoutdate ? formData.checkoutdate : urlparams.checkoutdate}</h5>
                         </span>
                         {
                             checkOutTrue && <div style={wrapperStyle}>
@@ -147,7 +150,7 @@ const PriceCart = ({ roomdata }) => {
                         <span>|</span>
                     </div>
                     <div>
-                        <span>{formData.guest} <b>Guest</b> </span>
+                        <span>{formData.guest ? formData.guest : urlparams.guest} <b>Guest</b> </span>
                     </div>
 
                 </div>
