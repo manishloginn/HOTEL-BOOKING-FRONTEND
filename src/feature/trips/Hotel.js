@@ -5,7 +5,7 @@ import "./styles/index.scss"
 
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Endpoints from "../../network/endpoints";
 import request from "../../network/request";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,10 +16,14 @@ const Hotel = ({ hotel }) => {
 
     const dispatch = useDispatch()
     const [activeIndex, setActiveIndex] = useState(0);
+    const params = useParams()
 
     const formData = useSelector((state) => state.search.searchData)
 
 
+    const popup = useSelector((state) => state.search.togglePopup)
+
+    console.log(popup)
 
     const navigate = useNavigate()
 
@@ -33,7 +37,7 @@ const Hotel = ({ hotel }) => {
 
     const handelDetail = (e) => {
         const hotelId = e.target.id
-        navigate(`/${hotelId}/${formData.location}/${formData.checkindate}/${formData.checkoutdate}/${formData.guest}`)
+        navigate(`/${hotelId}/${params.location}/${params.checkindate}/${params.checkoutdate}/${params.guest}`)
     }
 
     const handelbookIntrip = (e) => {
@@ -51,6 +55,7 @@ const Hotel = ({ hotel }) => {
                 const result = await request(httpConfig)
                 // console.log(result)
                 if (result.success) {
+                //    console.log(result.data.data[0]._id)
                    const roomId = result.data.data[0]._id
                    bookingSend({roomId, formData, dispatch})
                 } else {

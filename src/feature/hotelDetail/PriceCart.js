@@ -7,6 +7,7 @@ import { LineOutlined } from '@ant-design/icons';
 import ErrorIcon from '@mui/icons-material/Error';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { bookingSend } from '../../utils';
+import { LoginCalling } from '../search/NavLinks';
 
 const PriceCart = ({ roomdata }) => {
 
@@ -24,6 +25,7 @@ const PriceCart = ({ roomdata }) => {
     const popup = useSelector((state) => state.search.togglePopup)
 
     console.log(popup)
+
 
     const [formData, setformData] = useState({
         checkindate: params.checkindate,
@@ -95,7 +97,12 @@ const PriceCart = ({ roomdata }) => {
 
     // console.log(roomdata)
     return (
+        <>
+           {
+                popup && <LoginCalling />
+            }
         <div>
+        
             <div className="priceUpper">
                 <div className='pricesection'>
                     <h3 >₹{(hotelDetail?.price - hotelDetail?.price * 0.10).toFixed(2)}</h3>
@@ -177,6 +184,8 @@ const PriceCart = ({ roomdata }) => {
                 </div>
             </div>
         </div>
+         
+            </>
     )
 }
 

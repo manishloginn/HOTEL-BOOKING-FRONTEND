@@ -6,11 +6,6 @@ import { toggleLogin } from "./feature/search/slice"
 
 export const bookingSend = ({ roomId, formData, dispatch }) => {
 
-    
-    // console.log(roomId)
-    // console.log(formData)
-    // console.log(dispatch)
-    // // console.log(roomId)
 
     if (!roomId) {
         return alert('please select room first')
@@ -32,7 +27,7 @@ export const bookingSend = ({ roomId, formData, dispatch }) => {
             const result = await request(httpConfig)
             if (result.success) {
                 if (result.data.status === 401) {
-                    alert('hit')
+                    alert('please login')
                     dispatch(toggleLogin())
                 } else {
                     console.log("booking successfull")
