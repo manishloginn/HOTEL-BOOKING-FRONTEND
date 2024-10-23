@@ -7,7 +7,7 @@ import "./style/page.scss";
 
 
 
-import { Calendar } from 'antd';
+import { Calendar, notification } from 'antd';
 
 
 
@@ -49,14 +49,19 @@ const CitySearch = () => {
   // console.log(formData)
   const handelclick = () => {
     if (!formData.location || !formData.checkindate || !formData.checkoutdate || !formData.guest) {
-      alert('please fill all detail')
+      notification.warning({
+        message:'Please Fill All Detail'
+      })
+
     } else {
-      // Object.entries(formData).forEach(([key, value] ) => {
-      //   console.log(formData)
-        // dispatch(addSearchValue({key, value}))
-      // })
+
+
       dispatch(addSearchValue(formData))
       navigate(`search/${formData.location}/${formData.checkindate}/${formData.checkoutdate}/${formData.guest}`)
+      notification.success({
+        message:'Success',
+        description:"Please Select A Hotel "
+      })
     }
   }
 

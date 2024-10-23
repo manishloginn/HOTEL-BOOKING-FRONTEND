@@ -1,6 +1,8 @@
 import Endpoints from "./network/endpoints"
 import request from "./network/request"
 import { toggleLogin } from "./feature/search/slice"
+import { notification } from "antd"
+
 
 
 
@@ -8,7 +10,10 @@ export const bookingSend = ({ roomId, formData, dispatch }) => {
 
 
     if (!roomId) {
-        return alert('please select room first')
+        notification.warning({
+            message:"Room Required",
+             description:"Please Select A Room First"
+        })
     }
 
     const roomBook = async () => {
@@ -27,10 +32,16 @@ export const bookingSend = ({ roomId, formData, dispatch }) => {
             const result = await request(httpConfig)
             if (result.success) {
                 if (result.data.status === 401) {
-                    alert('please login')
+                    notification.warning({
+                        message: 'Login Required',
+                        description: 'Please login to proceed with the booking.',
+                    })
+                    // alert('please login')
                     dispatch(toggleLogin())
                 } else {
-                    console.log("booking successfull")
+                    notification.success({
+                        message:'Booking Successfull'
+                    })
                 }
             } else {
                 console.error("Error fetching hotel data:", result.data);

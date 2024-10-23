@@ -48,7 +48,6 @@ const HotelDetail = () => {
   }, [params.hotelId, dispatch]);
 
  
-  // console.log(selectedRoom)
 
   const onRoomSelect = (e) => {
     dispatch(selectedRoomId(e.target.id))
@@ -56,8 +55,6 @@ const HotelDetail = () => {
     Setroomdata(filterroomByid)
   }
 
-
-  // console.log(roomdata)
 
 
   return (

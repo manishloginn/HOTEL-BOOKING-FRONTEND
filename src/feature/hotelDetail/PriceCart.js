@@ -181,9 +181,7 @@ const PriceCart = ({ roomdata }) => {
                     </div>
                 </div>
                 <div className="submitButton">
-                    <button id={roomId} onClick={() => 
-                        bookingSend({roomId, formData, dispatch})         
-                        }>Continue to Book</button>
+                    <button id={roomId} onClick={() => bookingSend({roomId, formData, dispatch})}>Continue to Book</button>
                 </div>
             </div>
         </div>
