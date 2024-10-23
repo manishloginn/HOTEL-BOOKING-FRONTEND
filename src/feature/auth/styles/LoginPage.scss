@@ -1,22 +1,42 @@
 .login-page {
-    box-sizing: border-box;
-    width: 100vw;
-    height: 100vh;
-    background-color: #ECF3FB;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    transition: width 1s ease-in-out, height 1s ease-in-out;
+    z-index: 2;
+  
+    &.show {
+      width: 100vw;
+      height: 100vh;
+    }
 
     .login-wrraper {
-        height: 65%;
+        height: fit-content;
         width: 34%;
         background-color: #FFFFFF;
         padding: 8px;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
+        z-index: 1;
+
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.226);
+
+        .closethis {
+            cursor: pointer;
+            text-align: right;
+            padding: 0px 10px;
+            font-weight: 700;
+            font-size: 20px;
+
+        }
 
         .login-heading {
             flex: 1;
@@ -59,6 +79,7 @@
                 label {
                     font-weight: 500;
                     font-size: 18px;
+                    font-size: 20px;
                 }
 
                 input {
@@ -75,15 +96,17 @@
                     color: #B4BAC2;
                 }
 
-                span {
-                    color: #5678E1;
-                    font-weight: 600;
 
-                    &:hover {
-                        font-weight: 700;
-                        cursor: pointer;
-                        transition: ease-in-out 0.2s;
-                    }
+            }
+
+            span {
+                color: #5678E1;
+                font-weight: 600;
+
+                &:hover {
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: ease-in-out 0.2s;
                 }
             }
 
@@ -109,6 +132,7 @@
     }
 
     .register-wrraper {
+
         p {
             color: #949FB1;
         }
@@ -116,6 +140,7 @@
         span {
             color: #728EC1;
             font-weight: 500;
+            cursor: pointer;
 
             &:hover {
                 font-weight: 700;
@@ -128,6 +153,7 @@
 @media (min-width: 350px) and (max-width: 480px) {
     .login-page {
         gap: 10px;
+
         .login-wrraper {
             width: 90%;
         }
@@ -137,15 +163,17 @@
 @media (min-width: 480px) and (max-width: 768px) {
     .login-page {
         gap: 10px;
+
         .login-wrraper {
             width: 80%;
         }
     }
 }
 
-@media (min-width: 768px) and  (max-width: 1080px) {
+@media (min-width: 768px) and (max-width: 1080px) {
     .login-page {
         gap: 10px;
+
         .login-wrraper {
             width: 45%;
         }
