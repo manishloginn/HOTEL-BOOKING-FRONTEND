@@ -4,39 +4,42 @@ import { toggleLogin } from '../search/slice'
 import { useState } from 'react'
 import request from '../../network/request'
 import Endpoints from '../../network/endpoints'
+import Cookies from "js-cookie";
 
 const LoginPage = () => {
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
 
-   const handelSubmit = async(e)=>{
-     e.preventDefault()
-     const payload = {
-        method: 'post',
-        url: Endpoints.userLogin,
-        data: {
-            email: e.target.email.value,
-            password: e.target.password.value
-         }
-     } 
-
-     try {
-        setLoading(true)
-        const {success,data} = await request(payload)
-        if(success){
-            setLoading(false)
-            dispatch(toggleLogin(false))
-        }else{
-            setLoading(false)
-            alert(data)
+    const handelSubmit = async (e) => {
+        e.preventDefault()
+        const payload = {
+            method: 'POST',
+            url: Endpoints.userLogin,
+            data: {
+                email: e.target.email.value,
+                password: e.target.password.value
+            },
+            withCredentials: true
         }
-     } catch (error) {
-        setLoading(false)
-        console.log(error)
-     }finally{
-        setLoading(false)
-     }
-   }
+
+        try {
+            setLoading(true)
+            const result = await request(payload)
+            console.log(result)
+            if (result.success) {
+                setLoading(false)
+                dispatch(toggleLogin(false))
+                setLoading(false)
+
+                Cookies.set("userToken", result.data.token)
+            }
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
+        } finally {
+            setLoading(false)
+        }
+    }
 
     return (
         <div className="login-wrraper">
@@ -55,7 +58,7 @@ const LoginPage = () => {
                     <input type="text" placeholder='Enter your password' name='password' required id='login-Password' />
                 </div>
                 <span>Forgot Password?</span>
-                <button disabled={loading} className='login-button'>{loading ? <div
+                <button type='submit' disabled={loading} className='login-button'>{loading ? <div
                     className='login-loader'>
                 </div> : 'Login'}</button>
                 <div className="register-wrraper-para">

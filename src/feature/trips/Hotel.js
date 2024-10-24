@@ -57,7 +57,7 @@ const Hotel = ({ hotel }) => {
                 if (result.success) {
                 //    console.log(result.data.data[0]._id)
                    const roomId = result.data.data[0]._id
-                   bookingSend({roomId, formData, dispatch})
+                   bookingSend({hotelId, roomId, formData, dispatch})
                 } else {
                     console.log("booking error")
                 }

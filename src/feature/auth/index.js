@@ -1,8 +1,8 @@
-import { useDispatch } from "react-redux"
+
 import './styles/index.scss'
 import LoginPage from "./LoginPage"
 import RegisterPage from './RegisterPage'
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 
 const AuthWrraper = () => {
   // const dispatch=useDispatch()
