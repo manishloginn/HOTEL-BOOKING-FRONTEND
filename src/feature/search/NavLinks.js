@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import LoginPage from "../auth/LoginPage"
 
 import "./style/navbar.scss"
 
@@ -8,6 +7,7 @@ import "./style/navbar.scss"
 import { motion } from "framer-motion"
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleLogin } from './slice'
+import AuthWrraper from '../auth'
 
 export const LoginCalling = () => {
   return (
@@ -16,7 +16,8 @@ export const LoginCalling = () => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <LoginPage  />
+      {/* <LoginPage  /> */}
+      <AuthWrraper />
     </motion.div>
   )
 }

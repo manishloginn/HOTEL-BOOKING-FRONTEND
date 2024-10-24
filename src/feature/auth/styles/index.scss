@@ -1,0 +1,19 @@
+.auth-page{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 1s ease-in-out, height 1s ease-in-out;
+    z-index: 2;
+  
+    &.show {
+        width: 100vw;
+        height: 100vh;
+      }
+}

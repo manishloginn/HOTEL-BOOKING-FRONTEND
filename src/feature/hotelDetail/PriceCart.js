@@ -37,7 +37,8 @@ const PriceCart = ({ roomdata }) => {
     })
 
     const hotelDetail = useSelector((state) => state.hotelDetail.data.hotelDetail);
-    // console.log(hotelDetail)
+    console.log(hotelDetail)
+    const hotelId = hotelDetail?._id
 
 
     const haldelcheckinCalender = (e) => {
@@ -82,10 +83,6 @@ const PriceCart = ({ roomdata }) => {
 
     }
 
-  
-
-
-
     const wrapperStyle = {
         display: "flex",
         justifyContext: "center",
@@ -98,7 +95,6 @@ const PriceCart = ({ roomdata }) => {
         backgroundColor: "white"
     };
 
-    // console.log(roomdata)
     return (
         <>
            {
@@ -181,7 +177,7 @@ const PriceCart = ({ roomdata }) => {
                     </div>
                 </div>
                 <div className="submitButton">
-                    <button id={roomId} onClick={() => bookingSend({roomId, formData, dispatch})}>Continue to Book</button>
+                    <button id={roomId} onClick={() => bookingSend({hotelId, roomId, formData, dispatch})}>Continue to Book</button>
                 </div>
             </div>
         </div>

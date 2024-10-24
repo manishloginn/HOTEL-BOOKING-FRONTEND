@@ -2,12 +2,15 @@ import Endpoints from "./network/endpoints"
 import request from "./network/request"
 import { toggleLogin } from "./feature/search/slice"
 import { notification } from "antd"
+import { useParams } from "react-router-dom"
 
 
 
 
-export const bookingSend = ({ roomId, formData, dispatch }) => {
 
+export const bookingSend = ({hotelId,  roomId, formData, dispatch }) => {
+
+    
 
     if (!roomId) {
        return notification.warning({
@@ -21,6 +24,7 @@ export const bookingSend = ({ roomId, formData, dispatch }) => {
             url: Endpoints.bookRoom,
             method: "POST",
             data: {
+                hotelId:hotelId,
                 roomId: roomId,
                 startDate: formData.checkindate,
                 endDate: formData.checkoutdate,
@@ -30,21 +34,29 @@ export const bookingSend = ({ roomId, formData, dispatch }) => {
 
         try {
             const result = await request(httpConfig)
+            console.log(result)
             if (result.success) {
                 if (result.data.status === 401) {
                     notification.warning({
                         message: 'Login Required',
                         description: 'Please login to proceed with the booking.',
                     })
-                    // alert('please login')
-                    dispatch(toggleLogin())
-                } else {
+
+                } else if(result.data.status === 400 ){
+                    notification.warning({
+                        message:"Room Allreaddy booked in this Date",
+                        description:"Select another Room in View Detail"
+                    })
+                }
+                
+                else {
                     notification.success({
                         message:'Booking Successfull'
                     })
                 }
             } else {
                 console.error("Error fetching hotel data:", result.data);
+                dispatch(toggleLogin())
             }
 
         } catch (error) {

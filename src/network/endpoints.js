@@ -5,7 +5,9 @@ const Endpoints = {
     hotelData : `${baseUrl}/hotelData`,
     fetchSelectedHotel: `${baseUrl}/hotelselect`,
     bookRoom: `${baseUrl}/bookRoom`,
-    fetchRoom: `${baseUrl}/hotelRooms`
+    fetchRoom: `${baseUrl}/hotelRooms`,
+    userLogin: `${baseUrl}/userLogin`,
+    userRegister: `${baseUrl}/userRegister`
 };
 
 export default Endpoints;

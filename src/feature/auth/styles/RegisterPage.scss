@@ -1,4 +1,4 @@
-.login-wrraper {
+.register-wrraper {
     height: fit-content;
     width: 34%;
     background-color: #FFFFFF;
@@ -19,7 +19,7 @@
 
     }
 
-    .login-heading {
+    .register-heading {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -52,7 +52,7 @@
         border-radius: 10px;
         padding: 20px;
 
-        .login-input-wrraper {
+        .register-input-wrraper {
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -76,7 +76,15 @@
             input::placeholder {
                 color: #B4BAC2;
             }
-
+            .register-radio-radio{
+                display: flex;
+                align-items: baseline;
+                gap: 10px;
+                label{
+                    color: #949FB1;
+                    font-weight: 500;
+                }
+            }
 
         }
 
@@ -91,7 +99,7 @@
             }
         }
 
-        .login-button {
+        .register-button {
             background-color: #2071FF;
             border: none;
             outline: none;
@@ -103,27 +111,10 @@
             color: white;
             font-weight: 700;
             cursor: pointer;
-            display: flex; 
-            justify-content: center;
-            align-items: center;
+
             &:hover {
                 opacity: 0.9;
                 font-weight: 600;
-            }
-
-            .login-loader {
-                border: 3px solid #f3f3f3; /* Light grey */
-                border-top: 4px solid #3498db; /* Blue */
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                overflow: hidden;
-                animation: spinner 1s linear infinite;
-            }
-
-            @keyframes spinner {
-                0%{transform: rotate(0deg);}
-                100%{transform: rotate(360deg);}
             }
         }
     }
@@ -148,19 +139,31 @@
 }
 
 @media (min-width: 350px) and (max-width: 480px) {
-    .login-wrraper {
-        width: 90%;
+    .register-page {
+        gap: 10px;
+
+        .register-wrraper {
+            width: 90%;
+        }
     }
 }
 
 @media (min-width: 480px) and (max-width: 768px) {
-    .login-wrraper {
-        width: 80%;
+    .register-page {
+        gap: 10px;
+
+        .register-wrraper {
+            width: 80%;
+        }
     }
 }
 
 @media (min-width: 768px) and (max-width: 1080px) {
-    .login-wrraper {
-        width: 45%;
+    .register-page {
+        gap: 10px;
+
+        .register-wrraper {
+            width: 45%;
+        }
     }
 }
