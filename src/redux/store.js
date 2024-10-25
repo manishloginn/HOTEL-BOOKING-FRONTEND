@@ -4,6 +4,7 @@ import filtersSlice from "../feature/filters/slice";
 import bookingSlice from "../feature/booking/slice";
 import tripsSlice from "../feature/trips/slice";
 import hotelDetail from "../feature/hotelDetail/slice";
+import loginSlice from "../feature/auth/slice";
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     filters: filtersSlice.reducer,
     booking: bookingSlice.reducer,
     trips: tripsSlice.reducer,
-    hotelDetail:hotelDetail.reducer
+    hotelDetail:hotelDetail.reducer,
+    loginSlice:loginSlice.reducer
   },
 });
 

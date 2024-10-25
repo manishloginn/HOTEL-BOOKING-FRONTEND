@@ -5,8 +5,9 @@ import { useState } from 'react'
 import request from '../../network/request'
 import Endpoints from '../../network/endpoints'
 import Cookies from "js-cookie";
+import { addDetail } from './slice'
 
-const LoginPage = () => {
+const LoginPage = ({setShow}) => {
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
 
@@ -25,13 +26,13 @@ const LoginPage = () => {
         try {
             setLoading(true)
             const result = await request(payload)
-            console.log(result)
+            const userDetail = result.data.findUser
             if (result.success) {
                 setLoading(false)
                 dispatch(toggleLogin(false))
                 setLoading(false)
-
                 Cookies.set("userToken", result.data.token)
+                dispatch(addDetail(userDetail))
             }
         } catch (error) {
             setLoading(false)
@@ -62,7 +63,7 @@ const LoginPage = () => {
                     className='login-loader'>
                 </div> : 'Login'}</button>
                 <div className="register-wrraper-para">
-                    <p>Don't have an account? <span>Register here</span></p>
+                    <p>Don't have an account? <span onClick={() => setShow(prev => !prev)}>Register here</span></p>
                 </div>
             </form>
         </div>

@@ -21,9 +21,9 @@ const Hotel = ({ hotel }) => {
     const formData = useSelector((state) => state.search.searchData)
 
 
-    const popup = useSelector((state) => state.search.togglePopup)
+    // const popup = useSelector((state) => state.search.togglePopup)
 
-    console.log(popup)
+    // console.log(popup)
 
     const navigate = useNavigate()
 

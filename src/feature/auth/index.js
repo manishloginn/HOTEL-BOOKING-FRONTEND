@@ -12,7 +12,7 @@ const AuthWrraper = () => {
 
   return (<div className="auth-page show">
     {
-      show  ?  <RegisterPage />: <LoginPage /> 
+      show  ?  <RegisterPage setShow={setShow} />: <LoginPage setShow={setShow} /> 
     }
   </div>)
 }
