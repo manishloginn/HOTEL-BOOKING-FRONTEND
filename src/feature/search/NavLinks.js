@@ -16,7 +16,6 @@ export const LoginCalling = () => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {/* <LoginPage  /> */}
       <AuthWrraper />
     </motion.div>
   )
@@ -25,12 +24,16 @@ export const LoginCalling = () => {
 
 const NavLinks = () => {
 
-  // const [togglePopup, settogglePopup] = useState(false)
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
   const togglePopup = useSelector((state) => state.search.togglePopup)
 
-  
+  const user = useSelector((state) => state.loginSlice)
+
+
+
+  console.log(user)
+
   const showLoginPopup = () => {
     dispatch(toggleLogin())
   }
@@ -40,19 +43,26 @@ const NavLinks = () => {
       <div className='navbar'>
         <Link to="/">
           <div className='logo'>
-            <span className='stay'>Stay</span >   <span > Well</span></div>
+            <span className='stay'>Stay</span > <span > Well</span></div>
         </Link>
-        <div className='navbarlink'>
-          <Link onClick={showLoginPopup} > Sign In </Link>
-          <Link to='#' > Create An Account </Link>
-        </div>
+        {
+          user.userName ?
+            <div>
+              <p>Welcome {user.userName} !</p>
+            </div> :
+            <div className='navbarlink'>
+              <Link onClick={showLoginPopup} > Sign In </Link>
+              <Link to='#' > Create An Account </Link>
+            </div>
+        }
+
 
       </div>
 
 
 
       {togglePopup && (
-        <LoginCalling  />
+        <LoginCalling />
       )}
     </>
   )

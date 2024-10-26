@@ -4,7 +4,7 @@ import { toggleLogin } from "../search/slice"
 import Endpoints from "../../network/endpoints"
 import request from "../../network/request"
 
-const RegisterPage = () => {
+const RegisterPage = ({setShow}) => {
     const dispatch = useDispatch()
 
     const handelSubmit = async(e)=>{
@@ -62,7 +62,7 @@ const RegisterPage = () => {
                 </div>
                 <button className='register-button'>Login</button>
                 <div className="login-wrraper-para">
-                    <p>Already have an account? <span>register here</span></p>
+                    <p>Already have an account? <span onClick={() => setShow(prev => !prev)}>Login here</span></p>
                 </div>
             </form>
         </div>

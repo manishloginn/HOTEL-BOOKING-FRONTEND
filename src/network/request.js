@@ -18,7 +18,7 @@ const request = async (httpConfig) => {
       }),
       ...(httpConfig.params && { params: httpConfig.params }),
     });
-    console.log("response0", response)
+    // console.log("response0", response)
     return { success: true, data: response.data };
   } catch (error) {
     return { success: false, data: error.response.data.message ?? "Something went wrong!!!" };
