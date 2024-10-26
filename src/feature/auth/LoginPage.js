@@ -13,7 +13,7 @@ const LoginPage = () => {
     const handelSubmit = async (e) => {
         e.preventDefault()
         const payload = {
-            method: 'POST',
+            method: 'post',
             url: Endpoints.userLogin,
             data: {
                 email: e.target.email.value,
@@ -30,7 +30,6 @@ const LoginPage = () => {
                 setLoading(false)
                 dispatch(toggleLogin(false))
                 setLoading(false)
-
                 Cookies.set("userToken", result.data.token)
             }
         } catch (error) {

@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 const request = async (httpConfig) => {
   const token = Cookies.get("userToken");
 
-  console.log(token)
+  // console.log(token)
 
   try {
     const response = await axios({
