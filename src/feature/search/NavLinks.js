@@ -32,7 +32,6 @@ const NavLinks = () => {
 
 
 
-  console.log(user)
 
   const showLoginPopup = () => {
     dispatch(toggleLogin())
@@ -53,6 +52,7 @@ const NavLinks = () => {
             <div className='navbarlink'>
               <Link onClick={showLoginPopup} > Sign In </Link>
               <Link to='#' > Create An Account </Link>
+              <Link to={"/book"}> My bookings</Link>
             </div>
         }
 

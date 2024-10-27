@@ -7,7 +7,8 @@ const Endpoints = {
     bookRoom: `${baseUrl}/bookRoom`,
     fetchRoom: `${baseUrl}/hotelRooms`,
     userLogin: `${baseUrl}/userLogin`,
-    userRegister: `${baseUrl}/userRegister`
+    userRegister: `${baseUrl}/userRegister`,
+    myBookings: `${baseUrl}/myBookings`
 };
 
 export default Endpoints;
