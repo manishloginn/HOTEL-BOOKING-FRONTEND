@@ -8,6 +8,7 @@ import { motion } from "framer-motion"
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleLogin } from './slice'
 import AuthWrraper from '../auth'
+import Cookies from "js-cookie";
 
 export const LoginCalling = () => {
   return (
@@ -30,9 +31,11 @@ const NavLinks = () => {
 
   const user = useSelector((state) => state.loginSlice)
 
+  const userCookie = Cookies.get(JSON.stringify("userDetail"))
 
 
-  console.log(user)
+
+  console.log(userCookie)
 
   const showLoginPopup = () => {
     dispatch(toggleLogin())
