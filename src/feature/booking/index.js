@@ -13,7 +13,7 @@ const BookingScreen = () => {
   const bookingList = useSelector(bookingData)
   useEffect(() => {
     dispatch(fetchBookings())
-  }, [])
+  }, [dispatch])
 
   console.log(bookingList)
 
@@ -30,7 +30,7 @@ const BookingScreen = () => {
           </div>
           <div className="booking-list-wrraper">
             {
-              apiStatus === "init" || apiStatus === "pending" &&
+              apiStatus === "init" && apiStatus === "pending" &&
               <h2>Fetching...</h2>
             }
             {

@@ -13,7 +13,7 @@ const Profile = () => {
         changePassword: false
     })
 
-    const apiStatus = useSelector(store => store.profileSlice.apiStatus)
+    // const apiStatus = useSelector(store => store.profileSlice.apiStatus)
     const profileDetails = useSelector(store => store.profileSlice.data)
     const dispatch = useDispatch()
 
@@ -47,7 +47,7 @@ const Profile = () => {
 
     useEffect(() => {
         dispatch(fetchProfileDetails())
-    }, [])
+    }, [dispatch])
 
     return (
         <div>

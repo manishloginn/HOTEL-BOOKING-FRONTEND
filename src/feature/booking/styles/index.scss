@@ -1,11 +1,13 @@
 .booking-page {
-    width: 100vw;
+    // width: 90vw;
     height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding-top: 10%;
-    position: absolute;
-    top: 10px;
+    // position: absolute;
+    // top: 10px;
+    margin-top: -250px;
 
     .booking-wrraper {
         width: 88%;
@@ -80,6 +82,9 @@
                     .bookig-cart-id{
                         width: 180px;
                         overflow-x: hidden;
+                        font-size: 16px;
+                        // display: flex;
+                        align-items: center;
                         text-overflow: ellipsis;
                     }
                     .booking-status-payment {

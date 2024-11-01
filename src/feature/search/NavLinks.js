@@ -9,8 +9,8 @@ import AuthWrraper from '../auth'
 import Cookies from 'js-cookie';
 import { Button, Popover, Space } from 'antd'
 import { User } from 'lucide-react'
+import jwt_decode from 'jwt-decode'
 
-import Cookies from "js-cookie";
 
 export const LoginCalling = () => {
   return (
@@ -28,14 +28,22 @@ export const LoginCalling = () => {
 const NavLinks = () => {
   const [token, setToken] = useState(null)
   const dispatch = useDispatch()
+  const [userDetail , setuserDetail] = useState(null)
   const togglePopup = useSelector((state) => state.search.togglePopup)
-  const user = useSelector((state) => state.loginSlice)
+  // const user = useSelector((state) => state.loginSlice)
   const userToken = Cookies.get("userToken")
   const navigate = useNavigate()
+  console.log(userToken)
 
   useEffect(() => {
     setToken(userToken)
+    if(userToken){
+      const decodeuserDetail = jwt_decode(userToken)
+      setuserDetail(decodeuserDetail)
+    }
   }, [userToken])
+
+  console.log(userDetail)
 
   const showLoginPopup = () => {
     dispatch(toggleLogin())
@@ -60,6 +68,7 @@ const NavLinks = () => {
 
         {
           token ? <Space wrap>
+            <h1>{userDetail?.username}</h1>
             <Popover className='h' content={<div className='profile-wrraper'>
               <div className='profile-item'>
                 <span onClick={() => handelNavigate('/profile')}>View Profile</span>
