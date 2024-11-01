@@ -5,7 +5,6 @@ import RegisterPage from './RegisterPage'
 import {  useState } from "react"
 
 const AuthWrraper = () => {
-  // const dispatch=useDispatch()
   const [show, setShow] = useState(false)
 
   
