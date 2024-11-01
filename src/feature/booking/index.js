@@ -4,24 +4,18 @@ import './styles/index.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBookings } from './thunk';
 import { bookingStatusSelector, bookingData } from './selectors';
-
-function formatDate(isoDateString) {
-  const date = new Date(isoDateString);
-
-  const options = { year: 'numeric', month: 'short', day: 'numeric' };
-
-  return date.toLocaleDateString('en-US', options);
-}
+import BookingCart from './component/BookingCart.';
 
 const BookingScreen = () => {
 
   const dispatch = useDispatch()
   const apiStatus = useSelector(bookingStatusSelector)
   const bookingList = useSelector(bookingData)
-
   useEffect(() => {
     dispatch(fetchBookings())
   }, [])
+
+  console.log(bookingList)
 
   return (
     <div>
@@ -50,35 +44,9 @@ const BookingScreen = () => {
             }
             {
               bookingList?.map((booking) => {
-                return <div className="bookig-cart" key={booking._id}>
-                  <div className="bookig-cart-left">
-                    <div className="image-box">
-                      <img src={booking?.hotelId?.images[0]} alt={booking?.hotelId?.name} />
-                    </div>
-                    <div className="details-box">
-                      <h4>{booking?.hotelId?.name}</h4>
-                      <div className="details-box-dates">
-                        <span>{formatDate(booking.checkInDate)} - {formatDate(booking.checkOutDate)}</span>
-                        <span>{booking?.guests} Guest, {booking?.roomId?.bookedDates.length > 1 ? booking?.roomId?.bookedDates.length : 1} Room</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bookig-cart-right">
-                    <h4 className='bookig-cart-id'>{booking?._id}</h4>
-                    <div className="booking-status-payment">
-                      <h4 className='booking-status-payment-status '>{booking.status} Booking</h4>
-                      <h5 className='booking-amount'>Booking Amount: ₹{booking.totalPrice}</h5>
-                      <span>ViewDetails</span>
-                      <span>Need Help?</span>
-                    </div>
-                  </div>
-                </div>
+                return <BookingCart booking={booking} key={booking._id} />
               })
             }
-
-
-
-
           </div>
         </div>
       </div>

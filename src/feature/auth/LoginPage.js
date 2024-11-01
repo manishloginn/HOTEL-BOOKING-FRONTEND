@@ -25,13 +25,13 @@ const LoginPage = ({setShow}) => {
 
         try {
             setLoading(true)
-            const result = await request(payload)
-            const userDetail = result.data.findUser
-            if (result.success) {
+            const {success,data} = await request(payload)
+            const userDetail = data.findUser
+            if (success) {
                 setLoading(false)
                 dispatch(toggleLogin(false))
                 setLoading(false)
-                Cookies.set("userToken", result.data.token)
+                Cookies.set("userToken", data.token)
                 dispatch(addDetail(userDetail))
             }
         } catch (error) {

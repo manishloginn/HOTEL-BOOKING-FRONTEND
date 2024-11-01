@@ -12,6 +12,8 @@ export const fetchBookings = () => {
         })
         if (success) {
             dispatch(updateBookingssStatus({ status: "success", data: data }))
+        }else{
+            dispatch(updateBookingssStatus({status: "error"}))
         }
     }
 }
