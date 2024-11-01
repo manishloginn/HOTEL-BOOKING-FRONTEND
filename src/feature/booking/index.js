@@ -8,39 +8,32 @@ import BookingCart from './component/BookingCart.';
 
 const BookingScreen = () => {
 
-  const dispatch = useDispatch()
-  const apiStatus = useSelector(bookingStatusSelector)
-  const bookingList = useSelector(bookingData)
-  const [value, setValue] = useState('Ongoing')
-
-  const [showedData, setshowedData] = useState([])
-
-  // console.log(new Date().toLocaleString());
+  
+  const dispatch = useDispatch();
+  const apiStatus = useSelector(bookingStatusSelector);
+  const bookingList = useSelector(bookingData);
+  const [value, setValue] = useState('Ongoing');
+  const [showedData, setshowedData] = useState([]);
 
   const today = new Date();
-  const formattedDate = today.toISOString().split('T').join('T');
-  // console.log(formattedDate);
+  today.setHours(0, 0, 0, 0); 
 
-
-  const upcomingJournies = bookingList?.filter((value) =>
-    new Date(value.checkInDate).toISOString().split('T').join('T') >= formattedDate
-)
-
-  const pastJournies = bookingList?.filter((value) =>
-    new Date(value.checkOutDate).toISOString().split('T').join('T') <= formattedDate)
-
-
-  const presentBooking = bookingList?.filter(
-    (value) => new Date(value.checkInDate).toISOString().split('T').join('T') <= formattedDate
-      && new Date(value.checkOutDate).toISOString().split('T').join('T') >= formattedDate
+  const upcomingJournies = bookingList?.filter((booking) =>
+    new Date(booking.checkInDate) > today
   );
 
-  console.log(presentBooking)
+  const pastJournies = bookingList?.filter((booking) =>
+    new Date(booking.checkOutDate) < today
+  );
 
+  const presentBooking = bookingList?.filter((booking) =>
+    new Date(booking.checkInDate) <= today && new Date(booking.checkOutDate) >= today
+  );
 
   const handelselectorChange = (e) => {
     const selectedValue = e.target.value;
     setValue(selectedValue);
+
     if (selectedValue === "Ongoing") {
       setshowedData(presentBooking);
     } else if (selectedValue === "Upcoming Bookings") {
@@ -50,14 +43,22 @@ const BookingScreen = () => {
     }
   };
 
-
-  console.log(showedData)
+  useEffect(() => {
+    dispatch(fetchBookings());
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchBookings())
-    // setshowedData(upcomingJournies);
-    // handelselectorChange("Ongoing")
-  }, [dispatch])
+    
+    if (value === "Ongoing") {
+      setshowedData(presentBooking);
+    } else if (value === "Upcoming Bookings") {
+      setshowedData(upcomingJournies);
+    } else {
+      setshowedData(pastJournies);
+    }
+  }, [bookingList, value, presentBooking, upcomingJournies, pastJournies]);
+
+
 
   // console.log(bookingList)
   
