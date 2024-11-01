@@ -9,7 +9,9 @@ import AuthWrraper from '../auth'
 import Cookies from 'js-cookie';
 import { Button, Popover, Space } from 'antd'
 import { User } from 'lucide-react'
-import jwt_decode from 'jwt-decode'
+// import jwt_decode from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode';
+
 
 
 export const LoginCalling = () => {
@@ -28,7 +30,7 @@ export const LoginCalling = () => {
 const NavLinks = () => {
   const [token, setToken] = useState(null)
   const dispatch = useDispatch()
-  const [userDetail , setuserDetail] = useState(null)
+  const [userDetail, setuserDetail] = useState(null)
   const togglePopup = useSelector((state) => state.search.togglePopup)
   // const user = useSelector((state) => state.loginSlice)
   const userToken = Cookies.get("userToken")
@@ -37,8 +39,8 @@ const NavLinks = () => {
 
   useEffect(() => {
     setToken(userToken)
-    if(userToken){
-      const decodeuserDetail = jwt_decode(userToken)
+    if (userToken) {
+      const decodeuserDetail = jwtDecode(userToken)
       setuserDetail(decodeuserDetail)
     }
   }, [userToken])
@@ -58,6 +60,10 @@ const NavLinks = () => {
     navigate(path)
   }
 
+  const firstlettercapital = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
+
   return (
     <>
       <div className='navbar'>
@@ -66,10 +72,15 @@ const NavLinks = () => {
             <span className='stay'>Stay</span > <span > Well</span></div>
         </Link>
 
+
         {
+
           token ? <Space wrap>
-            <h1>{userDetail?.username}</h1>
+            <div className='username'>
+              <h3>Welcome {firstlettercapital(userDetail.user)} !</h3>
+            </div>
             <Popover className='h' content={<div className='profile-wrraper'>
+
               <div className='profile-item'>
                 <span onClick={() => handelNavigate('/profile')}>View Profile</span>
               </div>
