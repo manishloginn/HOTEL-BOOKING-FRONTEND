@@ -27,13 +27,15 @@ const BookingScreen = () => {
 )
 
   const pastJournies = bookingList?.filter((value) =>
-    new Date(value.checkOutDate).toISOString().split('T').join('T') >= formattedDate)
+    new Date(value.checkOutDate).toISOString().split('T').join('T') <= formattedDate)
 
 
   const presentBooking = bookingList?.filter(
-    (value) => new Date(value.checkInDate).toISOString().split('T').join('T') >= formattedDate
-      && new Date(value.checkOutDate).toISOString().split('T').join('T') <= formattedDate
+    (value) => new Date(value.checkInDate).toISOString().split('T').join('T') <= formattedDate
+      && new Date(value.checkOutDate).toISOString().split('T').join('T') >= formattedDate
   );
+
+  console.log(presentBooking)
 
 
   const handelselectorChange = (e) => {
