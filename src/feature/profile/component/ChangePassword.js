@@ -1,13 +1,23 @@
 import { Pen } from 'lucide-react'
 import './../styles/ChangePassword.scss'
+import { useState } from 'react'
 
-const ChangePassword = ({ show, handelShow, profileDetails }) => {
+const ChangePassword = ({ profileDetails }) => {
+
+
+    const [show, setShow] = useState(false)
+
+    const handelShow = (e) => {
+        // e.preventDefault()
+        setShow((prev) => !prev)
+    }
+
 
     return (
         // change-password-item
         <div className='change-password-wrraper'>
             <div className='change-password-item'>
-                <h3 className='change-password-item-head-text'>Change password   <span onClick={handelShow}><Pen /></span></h3>
+                <h3 className='change-password-item-head-text'>Change password   <span onClick={() => handelShow('handelChange')}><Pen /></span></h3>
             </div>
             <div className='change-password-item'>
                 <span className='change-password-item-head'>Current Password</span>

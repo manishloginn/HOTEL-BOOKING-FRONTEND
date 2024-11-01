@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '../search/Navbar';
 import './styles/index.scss'
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,11 +11,59 @@ const BookingScreen = () => {
   const dispatch = useDispatch()
   const apiStatus = useSelector(bookingStatusSelector)
   const bookingList = useSelector(bookingData)
+  const [value, setValue] = useState('Ongoing')
+
+  const [showedData, setshowedData] = useState([])
+
+  // console.log(new Date().toLocaleString());
+
+  const today = new Date();
+  const formattedDate = today.toISOString().split('T').join('T');
+  // console.log(formattedDate);
+
+
+  const upcomingJournies = bookingList?.filter((value) =>
+    new Date(value.checkInDate).toISOString().split('T').join('T') >= formattedDate
+)
+
+  const pastJournies = bookingList?.filter((value) =>
+    new Date(value.checkOutDate).toISOString().split('T').join('T') >= formattedDate)
+
+
+  const presentBooking = bookingList?.filter(
+    (value) => new Date(value.checkInDate).toISOString().split('T').join('T') >= formattedDate
+      && new Date(value.checkOutDate).toISOString().split('T').join('T') <= formattedDate
+  );
+
+
+  const handelselectorChange = (e) => {
+    const selectedValue = e.target.value;
+    setValue(selectedValue);
+    if (selectedValue === "Ongoing") {
+      setshowedData(presentBooking);
+    } else if (selectedValue === "Upcoming Bookings") {
+      setshowedData(upcomingJournies);
+    } else {
+      setshowedData(pastJournies);
+    }
+  };
+
+
+  console.log(showedData)
+
   useEffect(() => {
     dispatch(fetchBookings())
+    // setshowedData(upcomingJournies);
+    // handelselectorChange("Ongoing")
   }, [dispatch])
 
-  console.log(bookingList)
+  // console.log(bookingList)
+  
+  // console.log(showedData.length)
+    
+  // if (showedData.length === 0) {
+  //     return <p>No data found</p>;
+  //   }
 
   return (
     <div>
@@ -24,9 +72,12 @@ const BookingScreen = () => {
         <div className="booking-wrraper">
           <div className='booking-heading'>
             <h3>Booking History</h3>
-            <select name="" id="">
-              <option value="">upcomeing</option>
+            <select name="selectonbases" value={value} id="selectonbases" onChange={handelselectorChange}>
+              <option value="Ongoing">Ongoing</option>
+              <option value="Upcoming Bookings">Upcoming Bookings</option>
+              <option value="Past">Past Bookings</option>
             </select>
+
           </div>
           <div className="booking-list-wrraper">
             {
@@ -36,14 +87,16 @@ const BookingScreen = () => {
             {
               apiStatus === "error" &&
               <h2>Oh no we are feacing problem while fetching your bookings</h2>
-
+            }
+            {
+              showedData?.length <= 0 && <h2>No Bookings</h2>
             }
             {
               !bookingList &&
               <h2>Oops no bookings Available</h2>
             }
             {
-              bookingList?.map((booking) => {
+              showedData?.map((booking) => {
                 return <BookingCart booking={booking} key={booking._id} />
               })
             }

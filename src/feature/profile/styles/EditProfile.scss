@@ -3,17 +3,19 @@
     border: 2px solid #EEEEEE;
     background-color: white;
     padding: 70px 20px;
-
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    gap: 10%;
+    gap: 30%;
     box-sizing: border-box;
-    height: 130%;
+    // height: 130%;
+    height: 50px;
+    min-height: fit-content;
 
     .EditProfile-item {
         display: flex;
         flex-direction: column;
+        gap: 10px;
 
         h3 {
             font-weight: 700;
@@ -32,6 +34,10 @@
         .EditProfile-item-head {
             font-weight: 600;
             font-size: 20px;
+            display: flex;
+            margin-top: 10px;
+            gap: 10px;
+
         }
         
         .EditProfile-input {
@@ -57,6 +63,7 @@
             align-items: center;
             cursor: pointer;
             border-radius: 5px;
+            margin-top: 8px;
 
             &:hover {
                 opacity: 0.9;

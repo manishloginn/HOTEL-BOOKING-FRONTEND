@@ -1,7 +1,14 @@
 import { Pen } from "lucide-react"
 import './../styles/EditProfile.scss'
+import { useState } from "react"
 
-const EditProfile = ({ show, handelShow, profileDetails }) => {
+const EditProfile = ({  profileDetails }) => {
+
+    const [show, setShow] = useState(false)
+
+    const handelShow = (e) => {
+        setShow((prev) => !prev)
+    }
     
     return (
         <div className="EditProfile-wrraper">
@@ -18,7 +25,13 @@ const EditProfile = ({ show, handelShow, profileDetails }) => {
             </div>
             <div className='EditProfile-item'>
                 <span className='EditProfile-item-head'>Phone Number</span>
-                <span>{profileDetails?.mobile ? profileDetails.mobile : "NA"}</span>
+                {
+                    show ?
+                        <input className="EditProfile-input" type="text" placeholder='Enter Contact Detail' /> :
+                        <span>{profileDetails?.username}</span>
+                }
+                
+                {/* <span>{profileDetails?.mobile ? profileDetails.mobile : "NA"}</span> */}
             </div>
             <div className='EditProfile-item'>
                 <span className='EditProfile-item-head'>Email Address</span>

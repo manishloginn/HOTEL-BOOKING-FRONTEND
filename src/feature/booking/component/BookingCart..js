@@ -4,7 +4,10 @@ import formatDate from "./formatDate"
 const BookingCart = ({booking}) => {
     const navigate = useNavigate()
 
+    
+
     return (
+        
         <div className="bookig-cart" >
             <div className="bookig-cart-left">
                 <div className="image-box">
