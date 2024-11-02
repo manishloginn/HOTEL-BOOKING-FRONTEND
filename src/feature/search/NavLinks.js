@@ -35,7 +35,7 @@ const NavLinks = () => {
   // const user = useSelector((state) => state.loginSlice)
   const userToken = Cookies.get("userToken")
   const navigate = useNavigate()
-  console.log(userToken)
+  // console.log(userToken)
 
   useEffect(() => {
     setToken(userToken)
@@ -45,7 +45,7 @@ const NavLinks = () => {
     }
   }, [userToken])
 
-  console.log(userDetail)
+  // console.log(userDetail)
 
   const showLoginPopup = () => {
     dispatch(toggleLogin())

@@ -1,6 +1,6 @@
 import './styles/Profile.scss'
 import Navbar from '../search/Navbar'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProfileDetails } from './redux/thunk'
 import EditProfile from './component/EditProfile'

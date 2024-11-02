@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Navbar from '../search/Navbar';
 import './styles/index.scss'
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,19 +15,26 @@ const BookingScreen = () => {
   const [value, setValue] = useState('Ongoing');
   const [showedData, setshowedData] = useState([]);
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0); 
+  const today = useMemo(() => {
+    const date = new Date();
+    date.setHours(0, 0, 0, 0); 
+    return date
+  }, []) 
 
-  const upcomingJournies = bookingList?.filter((booking) =>
-    new Date(booking.checkInDate) > today
+  const upcomingJournies = useMemo(() => bookingList?.filter((booking) =>
+    new Date(booking.checkInDate) > today),
+   [bookingList, today]
+  )
+  
+
+
+  const pastJournies = useMemo(() => 
+    bookingList?.filter((booking) =>
+      new Date(booking.checkOutDate) < today), [bookingList, today] 
   );
 
-  const pastJournies = bookingList?.filter((booking) =>
-    new Date(booking.checkOutDate) < today
-  );
-
-  const presentBooking = bookingList?.filter((booking) =>
-    new Date(booking.checkInDate) <= today && new Date(booking.checkOutDate) >= today
+  const presentBooking = useMemo(() =>  bookingList?.filter((booking) =>
+    new Date(booking.checkInDate) <= today && new Date(booking.checkOutDate) >= today), [bookingList, today]
   );
 
   const handelselectorChange = (e) => {
