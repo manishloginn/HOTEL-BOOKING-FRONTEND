@@ -20,7 +20,7 @@ const CitySearch = () => {
     location: '',
     checkindate: dayjs().format('YYYY-MM-DD'),
     checkoutdate: dayjs().add(1, 'day').format('YYYY-MM-DD'),
-    guest: 1
+    guest: 2
   })
   const [checkinTrue, setcheckinTrue] = useState(false)
   const [checkOutTrue, setcheckOutTrue] = useState(false)

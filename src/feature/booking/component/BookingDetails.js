@@ -41,6 +41,12 @@ const BookingDetails = () => {
         return <h2>fetching...</h2>
     }
 
+
+    const firstlettercapital = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1)
+      }
+    
+
     return (
         <>
             <Navbar />
@@ -52,7 +58,7 @@ const BookingDetails = () => {
                             <h3>Booking Id</h3>
                             <span>{booking?._id}</span>
                         </div>
-                        <span>Booked by {booking?.userId?.username?.split(" ")[0]} {booking?.createdAt && formatDate(booking.createdAt)}</span>
+                        <span>Booked by {firstlettercapital(booking?.userId?.username?.split(" ")[0]) } {booking?.createdAt && formatDate(booking.createdAt)}</span>
                     </div>
                     <div className="hotel-details-wrraper">
                         <div className="hotel-details-left">
@@ -67,7 +73,7 @@ const BookingDetails = () => {
                     <div className="guiestsInfo-and-chekin-checkout">
                         <div className='guiestsInfo-cell-guest'>
                             <h4>Primary Guest</h4>
-                            <span>Mohammad</span>
+                            <span>{firstlettercapital(booking?.userId?.username?.split(" ")[0]) }</span>
                         </div>
                         <div className="guiestsInfo-cell-checkin-date">
                             <h4>Check In</h4>

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toggleLogin } from './slice'
 import AuthWrraper from '../auth'
 import Cookies from 'js-cookie';
-import { Button, Popover, Space } from 'antd'
+import { Button, notification, Popover, Space } from 'antd'
 import { User } from 'lucide-react'
 // import jwt_decode from 'jwt-decode'
 import { jwtDecode } from 'jwt-decode';
@@ -54,6 +54,9 @@ const NavLinks = () => {
   const handelLogout = () => {
     Cookies.remove('userToken')
     setToken(null)
+    notification.success({
+      message:"Logout Successfull"
+    })
   }
 
   const handelNavigate = (path) => {
@@ -71,8 +74,6 @@ const NavLinks = () => {
           <div className='logo'>
             <span className='stay'>Stay</span > <span > Well</span></div>
         </Link>
-
-
         {
 
           token ? <Space wrap>
