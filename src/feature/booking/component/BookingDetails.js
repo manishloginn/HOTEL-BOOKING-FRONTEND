@@ -44,8 +44,9 @@ const BookingDetails = () => {
 
     const firstlettercapital = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1)
-      }
-    
+    }
+
+    console.log(booking)
 
     return (
         <>
@@ -58,7 +59,7 @@ const BookingDetails = () => {
                             <h3>Booking Id</h3>
                             <span>{booking?._id}</span>
                         </div>
-                        <span>Booked by {firstlettercapital(booking?.userId?.username?.split(" ")[0]) } {booking?.createdAt && formatDate(booking.createdAt)}</span>
+                        <span>Booked by {firstlettercapital(booking?.userId?.username?.split(" ")[0])} {booking?.createdAt && formatDate(booking.createdAt)}</span>
                     </div>
                     <div className="hotel-details-wrraper">
                         <div className="hotel-details-left">
@@ -73,7 +74,7 @@ const BookingDetails = () => {
                     <div className="guiestsInfo-and-chekin-checkout">
                         <div className='guiestsInfo-cell-guest'>
                             <h4>Primary Guest</h4>
-                            <span>{firstlettercapital(booking?.userId?.username?.split(" ")[0]) }</span>
+                            <span>{firstlettercapital(booking?.userId?.username?.split(" ")[0])}</span>
                         </div>
                         <div className="guiestsInfo-cell-checkin-date">
                             <h4>Check In</h4>
@@ -81,11 +82,9 @@ const BookingDetails = () => {
                         </div>
                         <div className="guiestsInfo-cell-checkin-time">
                             <h4>Check In Time</h4>
-                            <span>12:00 PM</span>
+                            <span>11:00 AM</span>
                         </div>
-                        <div className="guiestsInfo-cell-duration">
-                            <h2>1 Night</h2>
-                        </div>
+
                         <div className="guiestsInfo-cell-mobile">
                             <h4>Mobile Number</h4>
                             <span>{booking?.userId?.mobile ? booking?.userId?.mobile : "NA"}</span>
@@ -99,11 +98,12 @@ const BookingDetails = () => {
                             <span>11:00 AM</span>
                         </div>
                         <div className="guiestsInfo-cell-guest">
-                            <span>1 Guest</span>
+                            <h4>Guest</h4>
+                            <span>{booking?.guests} Guest</span>
                         </div>
                         <div className="guiestsInfo-cell-room">
                             <h4>1 Room</h4>
-                            <span>Classic</span>
+                            <span>{booking?.roomId?.roomtype}</span>
                         </div>
                         <div className="guiestsInfo-cell-email">
                             <h4>Email Address</h4>

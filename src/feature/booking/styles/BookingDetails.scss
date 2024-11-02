@@ -1,5 +1,5 @@
 .BookingDetails {
-    width: 100vw;
+    width: 97vw;
     min-height: 100vh;
     padding: 0 10%;
     display: flex;
@@ -7,6 +7,8 @@
     gap: 20px;
     position: relative;
     top: -30vh;
+    // border: 1px solid;
+    margin: auto;
     .BookingDetails-heading {
         color: #EE2E24;
         font-weight: 700;

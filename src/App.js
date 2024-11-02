@@ -37,7 +37,7 @@ const App = () => {
     document.addEventListener("mousemove", handleMouseMove);
 
     return () => {
-      // document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
