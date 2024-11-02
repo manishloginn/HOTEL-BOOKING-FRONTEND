@@ -12,6 +12,7 @@ export const bookingSend = ({ hotelId, roomId, formData, dispatch }) => {
     // console.log(hotelId, roomId, formData, dispatch)
 
 
+
     if (!roomId) {
         return notification.warning({
             message: "Room Required",

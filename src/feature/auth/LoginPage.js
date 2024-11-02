@@ -5,8 +5,7 @@ import { useState } from 'react'
 import request from '../../network/request'
 import Endpoints from '../../network/endpoints'
 import Cookies from "js-cookie";
-import { addDetail } from './slice'
-import { message, notification } from 'antd'
+import {  notification } from 'antd'
 
 const LoginPage = ({setShow}) => {
     const dispatch = useDispatch()
