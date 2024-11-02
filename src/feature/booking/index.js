@@ -16,13 +16,12 @@ const BookingScreen = () => {
   const [showedData, setshowedData] = useState([]);
 
   const today = useMemo(() => {
-    const date = new Date();
-    date.setHours(0, 0, 0, 0); 
+    const date = new Date().toISOString();
     return date
   }, []) 
 
   const upcomingJournies = useMemo(() => bookingList?.filter((booking) =>
-    new Date(booking.checkInDate) > today),
+    new Date(booking.checkInDate).toISOString() > today),
    [bookingList, today]
   )
   
@@ -30,12 +29,14 @@ const BookingScreen = () => {
 
   const pastJournies = useMemo(() => 
     bookingList?.filter((booking) =>
-      new Date(booking.checkOutDate) < today), [bookingList, today] 
+      new Date(booking.checkOutDate).toISOString() < today), [bookingList, today] 
   );
 
   const presentBooking = useMemo(() =>  bookingList?.filter((booking) =>
-    new Date(booking.checkInDate) <= today && new Date(booking.checkOutDate) >= today), [bookingList, today]
+    new Date(booking.checkInDate).toISOString() <= today && new Date(booking.checkOutDate).toISOString() >= today), 
+    [bookingList, today]
   );
+
 
   const handelselectorChange = (e) => {
     const selectedValue = e.target.value;
