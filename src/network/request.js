@@ -15,9 +15,9 @@ const request = async (httpConfig) => {
       }),
       ...(httpConfig.params && { params: httpConfig.params }),
     });
-    return { success: true, data: response.data };
+    return { success: true, data: response?.data };
   } catch (error) {
-    return { success: false, data: error.response.data.message ?? "Something went wrong!!!" };
+    return { success: false, data: error?.response?.data?.message ?? "Something went wrong!!!" };
   }
 };
 

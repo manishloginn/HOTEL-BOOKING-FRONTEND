@@ -1,4 +1,5 @@
 const baseUrl = "https://hotel-booking-backend-ptbc.onrender.com";
+// const baseUrl = "http://localhost:5000";
 
 // TODO: add REST endpoints int this
 const Endpoints = {

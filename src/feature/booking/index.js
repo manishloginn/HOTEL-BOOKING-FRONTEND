@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchBookings } from './thunk';
 import { bookingStatusSelector, bookingData } from './selectors';
 import BookingCart from './component/BookingCart.';
+import { Flex, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const BookingScreen = () => {
 
-  
+
   const dispatch = useDispatch();
   const apiStatus = useSelector(bookingStatusSelector);
   const bookingList = useSelector(bookingData);
@@ -18,22 +20,22 @@ const BookingScreen = () => {
   const today = useMemo(() => {
     const date = new Date().toISOString();
     return date
-  }, []) 
+  }, [])
 
   const upcomingJournies = useMemo(() => bookingList?.filter((booking) =>
     new Date(booking.checkInDate).toISOString() > today),
-   [bookingList, today]
+    [bookingList, today]
   )
-  
 
 
-  const pastJournies = useMemo(() => 
+
+  const pastJournies = useMemo(() =>
     bookingList?.filter((booking) =>
-      new Date(booking.checkOutDate).toISOString() < today), [bookingList, today] 
+      new Date(booking.checkOutDate).toISOString() < today), [bookingList, today]
   );
 
-  const presentBooking = useMemo(() =>  bookingList?.filter((booking) =>
-    new Date(booking.checkInDate).toISOString() <= today && new Date(booking.checkOutDate).toISOString() >= today), 
+  const presentBooking = useMemo(() => bookingList?.filter((booking) =>
+    new Date(booking.checkInDate).toISOString() <= today && new Date(booking.checkOutDate).toISOString() >= today),
     [bookingList, today]
   );
 
@@ -56,7 +58,7 @@ const BookingScreen = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    
+
     if (value === "Ongoing") {
       setshowedData(presentBooking);
     } else if (value === "Upcoming Bookings") {
@@ -85,12 +87,15 @@ const BookingScreen = () => {
           <div className="booking-list-wrraper">
             {
               apiStatus === "init" && apiStatus === "pending" &&
-              <h2>Fetching...</h2>
+              <Flex style={{ display: "flex", width: '100vw', height: "100vh", justifyContent: "center" }} align="center" gap="middle">
+                <Spin indicator={<LoadingOutlined style={{ fontSize: 70 }} spin />} />
+              </Flex>
+
             }
-            {
+            {/* {
               apiStatus === "error" &&
               <h2>Oh no we are feacing problem while fetching your bookings</h2>
-            }
+            } */}
             {
               showedData?.length <= 0 && <h2>No Bookings</h2>
             }

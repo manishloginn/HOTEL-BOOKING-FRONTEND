@@ -2,6 +2,8 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import './app.scss'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BookingDetails from "./feature/booking/component/BookingDetails";
+import { Flex, Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 const Profile = lazy(() => import("./feature/profile/index"));
 const Search = lazy(() => import("./feature/search/index"));
 const TripsScreen = lazy(() => import("./feature/trips/index"));
@@ -12,7 +14,11 @@ const HotelDetail = lazy(() => import("./feature/hotelDetail/index"))
 
 const LazyLoadingWrapper = ({ Component }) => {
   return (
-    <Suspense fallback={<h1>Loading ...</h1>}>
+    <Suspense fallback={
+      <Flex style={{display:"flex", width:'100vw' , height:"100vh", justifyContent:"center"}} align="center"  gap="middle">
+      <Spin indicator={<LoadingOutlined style={{ fontSize: 70 }} spin />} />
+    </Flex>
+    }>
       <Component />
     </Suspense>
   );
