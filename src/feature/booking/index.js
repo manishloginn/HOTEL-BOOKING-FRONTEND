@@ -67,14 +67,6 @@ const BookingScreen = () => {
 
 
 
-  // console.log(bookingList)
-  
-  // console.log(showedData.length)
-    
-  // if (showedData.length === 0) {
-  //     return <p>No data found</p>;
-  //   }
-
   return (
     <div>
       <Navbar />
