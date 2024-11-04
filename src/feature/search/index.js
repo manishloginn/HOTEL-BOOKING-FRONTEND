@@ -36,7 +36,7 @@ const CitySearch = () => {
   const handelclick = () => {
     if (!formData.location || !formData.checkindate || !formData.checkoutdate || !formData.guest) {
       notification.warning({
-        message:'Please Fill All Detail'
+        message: 'Please Fill All Detail'
       })
 
     } else {
@@ -45,8 +45,8 @@ const CitySearch = () => {
       dispatch(addSearchValue(formData))
       navigate(`search/${formData.location}/${formData.checkindate}/${formData.checkoutdate}/${formData.guest}`)
       notification.success({
-        message:'Success',
-        description:"Please Select A Hotel "
+        message: 'Success',
+        description: "Please Select A Hotel "
       })
     }
   }
@@ -99,17 +99,7 @@ const CitySearch = () => {
 
   }
 
-  const wrapperStyle = {
-    display: "flex",
-    justifyContext: "center",
-    flexDirection: "column",
-    textAlign: "center",
-    width: 300,
-    border: `1px solid lightGrey `,
-    borderRadius: "10px",
-    position: "absolute",
-    backgroundColor:"white"
-  };
+
 
   useEffect(() => {
 
@@ -173,56 +163,59 @@ const CitySearch = () => {
               </div>
             }
           </div>
+          <div className="calendertop">
+            <div className="calender">
+              <div className="calenderhover">
+                <span className="dateshown">
+                  <h5 onClick={haldelcheckinCalender}>{formData.checkindate} </h5>
+                </span>
 
-          <div className="calender">
-            <div className="calenderhover">
-              <span className="dateshown">
-              <h5 onClick={haldelcheckinCalender}>{formData.checkindate} </h5>
-              </span>
-              {
-                checkinTrue && <div style={wrapperStyle}>
-                  <p>CHECK IN</p>
-                  <Calendar
-                    fullscreen={false}
-                    onChange={onCheckinChange}
-                    disabledDate={(current) => current && current < dayjs().startOf('day')}
-                  />
-                </div>
-              }
-            </div>
-            <LineOutlined />
-            <div className="calenderhover">
-            <span className="dateshown">
-              <h5 onClick={haldelCheckoutCalender}>{formData.checkoutdate}</h5>
-              </span>
-              {
-                checkOutTrue && <div style={wrapperStyle}>
-                  <p>CHECK OUT</p>
-                  <Calendar
-                    fullscreen={false}
-                    onChange={onCheckOutChange}
-                    disabledDate={(current) => {
-                      const checkindate = dayjs(formData.checkindate).add(1, ('day'));
-                      return current && (current < checkindate || current < dayjs().startOf('day'))
-                    }}
-                  />
-                </div>
-              }
-            </div>
-          </div>
+                {
+                  checkinTrue && <div className="wrapperStyle">
+                    <p>CHECK IN</p>
+                    <Calendar
+                      fullscreen={false}
+                      onChange={onCheckinChange}
+                      disabledDate={(current) => current && current < dayjs().startOf('day')}
+                    />
+                  </div>
+                }
 
-<div>
-          <label className="inputlabel">
-            <input
-              style={{ width: "50px" }}
-              type="text"
-              name="guest"
-              value={formData.guest}
-              required
-              onChange={formchangeHandel}
-            />
-            <UsergroupDeleteOutlined />
-          </label>
+              </div>
+              <LineOutlined />
+              <div className="calenderhover">
+                <span className="dateshown">
+                  <h5 onClick={haldelCheckoutCalender}>{formData.checkoutdate}</h5>
+                </span>
+                {
+                  checkOutTrue && <div className="wrapperStyle">
+                    <p>CHECK OUT</p>
+                    <Calendar
+                      fullscreen={false}
+                      onChange={onCheckOutChange}
+                      disabledDate={(current) => {
+                        const checkindate = dayjs(formData.checkindate).add(1, ('day'));
+                        return current && (current < checkindate || current < dayjs().startOf('day'))
+                      }}
+                    />
+                  </div>
+                }
+              </div>
+            </div>
+
+            <div>
+              <label className="inputlabel">
+                <input
+                  style={{ width: "50px" }}
+                  type="text"
+                  name="guest"
+                  value={formData.guest}
+                  required
+                  onChange={formchangeHandel}
+                />
+                <UsergroupDeleteOutlined />
+              </label>
+            </div>
           </div>
 
           <button onClick={handelclick}>Search</button>

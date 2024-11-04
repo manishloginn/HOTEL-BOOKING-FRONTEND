@@ -55,7 +55,7 @@ const NavLinks = () => {
     Cookies.remove('userToken')
     setToken(null)
     notification.success({
-      message:"Logout Successfull"
+      message: "Logout Successfull"
     })
   }
 
@@ -95,7 +95,8 @@ const NavLinks = () => {
               <Button><User /></Button>
             </Popover>
           </Space>
-            : <div className='navbarlink'>
+            :
+            <div className='navbarlink'>
               <Link onClick={showLoginPopup} > Sign In </Link>
               <Link to='#' > Create An Account </Link>
             </div>

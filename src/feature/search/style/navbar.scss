@@ -56,3 +56,19 @@
     }
 
 }
+
+
+@media screen  and (max-width : 500px) {
+        .container{
+            background-image: none;
+            height: 20vh; /* Adjust the height as needed */
+            width: 100%; /* Set the width to 100% of the parent/container */
+
+    }
+  
+    .navbarlink {
+        a{
+            display: none; /* Hide the entire navbarlink section */
+        }
+    }
+}
