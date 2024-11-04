@@ -5,7 +5,7 @@ import { useState } from 'react'
 import request from '../../network/request'
 import Endpoints from '../../network/endpoints'
 import Cookies from "js-cookie";
-import { addDetail } from './slice'
+import {  notification } from 'antd'
 
 const LoginPage = ({setShow}) => {
     const dispatch = useDispatch()
@@ -25,20 +25,24 @@ const LoginPage = ({setShow}) => {
 
         try {
             setLoading(true)
-            const result = await request(payload)
-            const userDetail = result.data.findUser;
-            console.log(userDetail)
-            if (result.success) {
-            
-                dispatch(toggleLogin(false))
-                Cookies.set("userDetail", JSON.stringify(userDetail), { expires: 7 })
-                Cookies.set("userToken", result.data.token, { expires: 7 })
-                dispatch(addDetail(userDetail))
+            const {success, data} = await request(payload)
+            if (success) {
                 setLoading(false)
+                dispatch(toggleLogin(false))
+                setLoading(false)
+                Cookies.set("userToken", data.token)
+                // dispatch(addDetail(userDetail))
+                setLoading(false)
+                notification.success({
+                    message:"Login Successfull"
+                })
             }
         } catch (error) {
             setLoading(false)
             console.log(error)
+            notification.warning({
+                message:error
+            })
         } finally {
             setLoading(false)
         }

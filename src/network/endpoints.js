@@ -1,4 +1,5 @@
-const baseUrl = "http://localhost:5000";
+const baseUrl = "https://hotel-booking-backend-ptbc.onrender.com";
+// const baseUrl = "http://localhost:5000";
 
 // TODO: add REST endpoints int this
 const Endpoints = {
@@ -7,7 +8,10 @@ const Endpoints = {
     bookRoom: `${baseUrl}/bookRoom`,
     fetchRoom: `${baseUrl}/hotelRooms`,
     userLogin: `${baseUrl}/userLogin`,
-    userRegister: `${baseUrl}/userRegister`
+    userRegister: `${baseUrl}/userRegister`,
+    myBookings: `${baseUrl}/myBookings`,
+    mySingleBooking: `${baseUrl}/mySingleBooking`,
+    profile: `${baseUrl}/profile`,
 };
 
 export default Endpoints;

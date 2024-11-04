@@ -2,18 +2,10 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import "./style/page.scss";
-
-
-
 import { Calendar, notification } from 'antd';
-
-
-
 import { LineOutlined, UsergroupDeleteOutlined } from '@ant-design/icons';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
-
 import dayjs from "dayjs";
 import Endpoints from "../../network/endpoints";
 import request from "../../network/request";
@@ -22,16 +14,13 @@ import { addHotelData, addSearchValue } from "./slice";
 
 
 const CitySearch = () => {
-
-  
   const dispatch = useDispatch()
-
   const [toggleCity, settoggleCity] = useState(false)
   const [formData, setformData] = useState({
     location: '',
     checkindate: dayjs().format('YYYY-MM-DD'),
     checkoutdate: dayjs().add(1, 'day').format('YYYY-MM-DD'),
-    guest: 1
+    guest: 2
   })
   const [checkinTrue, setcheckinTrue] = useState(false)
   const [checkOutTrue, setcheckOutTrue] = useState(false)
@@ -44,9 +33,6 @@ const CitySearch = () => {
     new Set(cities?.data?.map((item) => item.location))
   )
 
-
-
-  // console.log(formData)
   const handelclick = () => {
     if (!formData.location || !formData.checkindate || !formData.checkoutdate || !formData.guest) {
       notification.warning({
@@ -64,8 +50,6 @@ const CitySearch = () => {
       })
     }
   }
-
-
 
   const formchangeHandel = (e) => {
     const { name, value } = e.target;
@@ -115,8 +99,6 @@ const CitySearch = () => {
 
   }
 
-
-
   const wrapperStyle = {
     display: "flex",
     justifyContext: "center",
@@ -128,8 +110,6 @@ const CitySearch = () => {
     position: "absolute",
     backgroundColor:"white"
   };
-
-
 
   useEffect(() => {
 

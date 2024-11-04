@@ -18,7 +18,6 @@ const PriceCart = ({ roomdata }) => {
     const [toggleCity, settoggleCity] = useState(false)
 
     const roomId = useSelector((state) => state.hotelDetail.RoomId)
-    // console.log(roomId)
 
     const params = useSelector((state) => state.search.searchData)
     // console.log(params)
@@ -37,7 +36,6 @@ const PriceCart = ({ roomdata }) => {
     })
 
     const hotelDetail = useSelector((state) => state.hotelDetail.data.hotelDetail);
-    console.log(hotelDetail)
     const hotelId = hotelDetail?._id
 
 

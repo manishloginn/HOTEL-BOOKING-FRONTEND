@@ -1,0 +1,26 @@
+.profile-wrraper {
+    display: flex;
+    flex-direction: column;
+
+  
+
+
+    .profile-item {
+        padding: 10px 5px;
+        width: 100%;
+
+        &:hover {
+            background-color: #F3F5F7;
+            cursor: pointer;
+        }
+    }
+    .profile-item-border{
+        border-top: 2px solid #E0E0E0;
+    }
+}
+.h{
+    background-color: #A8C3E0;
+    color: #405B92;
+    border: none;
+    outline: none;
+}

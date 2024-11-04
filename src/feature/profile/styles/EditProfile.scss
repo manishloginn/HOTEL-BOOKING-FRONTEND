@@ -1,0 +1,74 @@
+.EditProfile-wrraper {
+    box-shadow: 0 0 20px #EEEEEE;
+    border: 2px solid #EEEEEE;
+    background-color: white;
+    padding: 70px 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 30%;
+    box-sizing: border-box;
+    // height: 130%;
+    height: 50px;
+    min-height: fit-content;
+
+    .EditProfile-item {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        h3 {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            span {
+                &:hover {
+                    opacity: 0.8;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .EditProfile-item-head {
+            font-weight: 600;
+            font-size: 20px;
+            display: flex;
+            margin-top: 10px;
+            gap: 10px;
+
+        }
+        
+        .EditProfile-input {
+            padding: 10px 10px;
+            border: none;
+            outline: none;
+            border: 1px solid black;
+            border-radius: 3px;
+            margin-top: 8px;
+            width: 80%;
+        }
+
+        .EditProfile-btn {
+            background-color: #1AB64F;
+            border: none;
+            outline: none;
+            padding: 8px 0;
+            width: 100px;
+            color: white;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 8px;
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+    }
+
+}

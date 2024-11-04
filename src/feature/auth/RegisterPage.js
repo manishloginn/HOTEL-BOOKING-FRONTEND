@@ -3,11 +3,12 @@ import "./styles/RegisterPage.scss"
 import { toggleLogin } from "../search/slice"
 import Endpoints from "../../network/endpoints"
 import request from "../../network/request"
+import { notification } from "antd"
 
-const RegisterPage = ({setShow}) => {
+const RegisterPage = ({ setShow }) => {
     const dispatch = useDispatch()
 
-    const handelSubmit = async(e)=>{
+    const handelSubmit = async (e) => {
         e.preventDefault()
         const payload = {
             url: Endpoints.userRegister,
@@ -19,15 +20,22 @@ const RegisterPage = ({setShow}) => {
                 password: e.target.password.value,
             }
         }
-                try {
-            const {success,data} = await request(payload)
-            if(success){
-                alert("user registerd success")
-            }else{
-              alert(data ? data : 'something went wrong')
+        try {
+            const { success, data } = await request(payload)
+            if (success) {
+                // alert("user registerd success")
+                notification.success({
+                    message: 'user registerd success'
+                })
+                dispatch(toggleLogin())
+            } else {
+                notification.warning({
+                    message: data ? data : 'something went wrong'
+                })
+                // alert()
             }
         } catch (error) {
-           console.error(error)
+            console.error(error)
         }
     }
 
@@ -51,7 +59,7 @@ const RegisterPage = ({setShow}) => {
                     <label htmlFor="register-radio">Role</label>
                     <div className="register-radio-radio">
                         <label htmlFor="register-Customer">Customer</label>
-                        <input type="radio" name="role" value={'Customer'} id="register-Customer" />
+                        <input type="radio" name="role" value={'guest'} id="register-Customer" />
                         <label htmlFor="register-Admin">Admin</label>
                         <input type="radio" name="role" value={'Admin'} id="register-Admin" />
                     </div>
