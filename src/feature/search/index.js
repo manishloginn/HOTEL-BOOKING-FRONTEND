@@ -182,7 +182,7 @@ const CitySearch = () => {
                 }
 
               </div>
-              <LineOutlined />
+              <LineOutlined className="line" />
               <div className="calenderhover">
                 <span className="dateshown">
                   <h5 onClick={haldelCheckoutCalender}>{formData.checkoutdate}</h5>
@@ -207,8 +207,9 @@ const CitySearch = () => {
               <label className="inputlabel">
                 <input
                   style={{ width: "50px" }}
-                  type="text"
+                  type="number"
                   name="guest"
+                  placeholder="Guest"
                   value={formData.guest}
                   required
                   onChange={formchangeHandel}

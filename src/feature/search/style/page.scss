@@ -3,10 +3,10 @@
 //     border: 1px solid ;
 // }
 
-.wrapperStyle::after {
-    width: 1200px;
-    background-color: red;
-}
+// .wrapperStyle::after {
+//     width: 1200px;
+//     background-color: red;
+// }
 
 .wrapperStyle {
     display: flex;
@@ -21,7 +21,9 @@
     border-radius: 10px;
     position: absolute;
     background-color: white;
-    border: 1px solid black;
+    top: 50px;
+    left: -50px;
+    // border: 1px solid black;
 }
 
 
@@ -199,6 +201,7 @@
         height: 100%;
         justify-content: center;
         align-items: center;
+        margin-top: 10px;
         // margin-top: -70px;
 
         .inputfields {
@@ -208,11 +211,17 @@
             //   border: 1px solid;
             justify-items: center;
 
+            button  {
+                width: 90%;
+                height: 50px;
+            }
             .calendertop {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+                // display: flex;
+                // justify-content: space-between;
+                // align-items: center;
                 // border: 1px solid;
+                display: grid;
+                grid-template-columns: 5fr 5fr;
                 width: 90%;
 
                 .calender {
@@ -222,36 +231,69 @@
                     justify-content: flex-start;
                     flex-direction: column;
 
+                    .line {
+                        display: none;
+                    }
+
                     // border: 1px solid;
                     .calenderhover {
                         // border: 1px solid;
-                        width: 40%;
+                        width: 100%;
                         position: relative;
-
+                        padding: 5px;
                         .dateshown {
                             width: 100%;
+                            // border: 1px solid grey;
+                            display: flex;
+                        
                         }
+
+                        .wrapperStyle {
+                            // border: 1px solid red;
+                            position: absolute;
+                            z-index: 1;
+                            left: 50px;
+                            top: 100px;
+                        }
+
+                     
                     }
                 }
             }
 
 
 
-            .hoverCities {
-                position: absolute;
-                top: 60px;
-                left: 0;
-                right: 0;
-                z-index: 1;
-                width: 80%;
-            }
 
             .hovercity {
                 width: 100vw;
+                height: fit-content;
                 // border: 1px solid red;
                 margin: 0;
                 display: flex;
                 justify-content: center;
+
+                .hoverCities {
+                    position: absolute;
+                    top: 60px;
+                    left: 0;
+                    right: 0;
+                    z-index: 1;
+                    width: 90%;
+                    margin: auto;
+                    display: flex;
+                    flex-direction: row;
+                    height: fit-content;
+                    color: grey;
+                    // overflow: hidden;      /* Hide overflow content */
+                    white-space: nowrap;
+                    /* Prevent text from wrapping */
+                    // text-overflow: ellipsis;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                }
+
 
                 input {
                     width: 90%;
