@@ -11,18 +11,20 @@ const HotelsList = () => {
     const data = useSelector((state) => state.trips.data)
     const filterData  = useSelector((state)=>state.trips.filterData)
 
+    // console.log(filterData)
+
     const dispatch = useDispatch()
     
     useEffect(()=>{
         if(data && data.length > 0){
             dispatch(addFilterData(data))
         }
-    }, [data, dispatch])
+    }, [ dispatch])
 
     return (
         <div className="hotel-list-wrraper">
             {
-            filterData?.map((hotel) => {
+            data?.map((hotel) => {
                 return <Hotel key={hotel.name} hotel={hotel} />
             })
         }

@@ -12,6 +12,8 @@ const BookingDetails = () => {
     const { bookingId } = useParams()
     const [booking, setBooking] = useState(null)
     const navigate = useNavigate()
+
+    
     useEffect(() => {
         const token = Cookies.get("userToken")
         if (!token) {
