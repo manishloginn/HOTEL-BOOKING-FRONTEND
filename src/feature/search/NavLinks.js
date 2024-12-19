@@ -26,8 +26,8 @@ export const LoginCalling = () => {
   )
 }
 
+export const Linkbranch = () => {
 
-const NavLinks = () => {
   const [token, setToken] = useState(null)
   const dispatch = useDispatch()
   const [userDetail, setuserDetail] = useState(null)
@@ -55,7 +55,7 @@ const NavLinks = () => {
     Cookies.remove('userToken')
     setToken(null)
     notification.success({
-      message:"Logout Successfull"
+      message: "Logout Successfull"
     })
   }
 
@@ -69,17 +69,21 @@ const NavLinks = () => {
 
   return (
     <>
+
       <div className='navbar'>
         <Link to="/">
           <div className='logo'>
-            <span className='stay'>Stay</span > <span > Well</span></div>
+            <span className='stay'>Stay</span > <span > Well</span>
+          </div>
         </Link>
+
+
         {
 
           token ? <Space wrap>
-            <div className='username'>
+            < div className='username' >
               <h3>Welcome {firstlettercapital(userDetail.user)} !</h3>
-            </div>
+            </ div>
             <Popover className='h' content={<div className='profile-wrraper'>
 
               <div className='profile-item'>
@@ -94,8 +98,9 @@ const NavLinks = () => {
             </div>} trigger="hover">
               <Button><User /></Button>
             </Popover>
-          </Space>
-            : <div className='navbarlink'>
+          </Space >
+            :
+            <div className='navbarlink'>
               <Link onClick={showLoginPopup} > Sign In </Link>
               <Link to='#' > Create An Account </Link>
             </div>
@@ -103,11 +108,21 @@ const NavLinks = () => {
 
       </div>
 
-
-
       {togglePopup && (
         <LoginCalling />
       )}
+    </>
+  )
+}
+
+
+const NavLinks = () => {
+
+
+  return (
+    <>
+
+      <Linkbranch />
     </>
   )
 }

@@ -14,7 +14,7 @@ const LoginPage = ({setShow}) => {
     const handelSubmit = async (e) => {
         e.preventDefault()
         const payload = {
-            method: 'POST',
+            method: 'post',
             url: Endpoints.userLogin,
             data: {
                 email: e.target.email.value,

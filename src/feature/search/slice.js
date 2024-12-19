@@ -17,7 +17,6 @@ const searchSlice = createSlice({
   initialState,
   reducers: {
     addHotelData: (state, action) => {
-
       state.hotelData = action.payload
     },
 

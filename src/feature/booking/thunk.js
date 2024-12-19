@@ -5,6 +5,7 @@ import { updateBookingssStatus } from "./slice"
 
 export const fetchBookings = () => {
     return async (dispatch) => {
+        
         dispatch(updateBookingssStatus({ status: "pending" }))
         const { success, data } = await request({
             url: Endpoints.myBookings,

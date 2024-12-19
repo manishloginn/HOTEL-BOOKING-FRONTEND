@@ -31,21 +31,21 @@ const App = () => {
 
   const [trail, setTrail] = useState(Array(5).fill({ x: 0, y: 0 }));
 
-  useEffect(() => {
-    const handleMouseMove = (event) => {
+  // useEffect(() => {
+  //   const handleMouseMove = (event) => {
      
-      setTrail((prevTrail) => [
-        { x: event.pageX, y: event.pageY },
-        ...prevTrail.slice(0, -1),
-      ]);
-    };
+  //     setTrail((prevTrail) => [
+  //       { x: event.pageX, y: event.pageY },
+  //       ...prevTrail.slice(0, -1),
+  //     ]);
+  //   };
 
-    document.addEventListener("mousemove", handleMouseMove);
+  //   document.addEventListener("mousemove", handleMouseMove);
 
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener("mousemove", handleMouseMove);
+  //   };
+  // }, []);
 
 
   return (
