@@ -10,6 +10,7 @@ import Endpoints from "../../network/endpoints";
 import request from "../../network/request";
 import { useDispatch, useSelector } from "react-redux";
 import { bookingSend } from "../../utils";
+import { useEffect } from "react";
 
 
 const Hotel = ({ hotel }) => {
@@ -18,12 +19,11 @@ const Hotel = ({ hotel }) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const params = useParams()
 
+
     const formData = useSelector((state) => state.search.searchData)
 
 
-    // const popup = useSelector((state) => state.search.togglePopup)
-
-    // console.log(popup)
+    console.log('hotelrender')
 
     const navigate = useNavigate()
 
@@ -55,20 +55,21 @@ const Hotel = ({ hotel }) => {
                 const result = await request(httpConfig)
                 // console.log(result)
                 if (result.success) {
-                //    console.log(result.data.data[0]._id)
-                   const roomId = result.data.data[0]._id
-                   bookingSend({hotelId, roomId, formData, dispatch})
+                    //    console.log(result.data.data[0]._id)
+                    const roomId = result.data.data[0]._id
+                    bookingSend({ hotelId, roomId, formData, dispatch })
                 } else {
                     console.log("booking error")
                 }
             } catch (error) {
                 console.error("Error fetching hotel data:", error);
             }
-    
+
         }
-    
+
         fetchRoom()
     }
+
 
 
     return (

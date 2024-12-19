@@ -1,35 +1,34 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import Hotel from "./Hotel"
 import './styles/index.scss'
-import { useEffect } from "react"
-import { addFilterData } from "./slice"
+import React, { useEffect } from "react"
 
 
 
 
 const HotelsList = () => {
     const data = useSelector((state) => state.trips.data)
-    const filterData  = useSelector((state)=>state.trips.filterData)
+    const filterData = useSelector((state) => state.trips.filterData)
 
-    // console.log(filterData)
 
-    const dispatch = useDispatch()
-    
-    useEffect(()=>{
-        if(data && data.length > 0){
-            dispatch(addFilterData(data))
-        }
-    }, [ dispatch])
+    useEffect(() => {
+        console.log('render')
+        console.log(filterData)
+    }, [filterData])
+
+
+    if (!filterData || filterData.length === 0) {
+        return <div className="hotel-list-wrapper">No hotels found</div>;
+      }
 
     return (
         <div className="hotel-list-wrraper">
-            {
-            data?.map((hotel) => {
-                return <Hotel key={hotel.name} hotel={hotel} />
-            })
-        }
+
+            {filterData.map((hotel) => (
+                <Hotel key={hotel.name} hotel={hotel} />
+            ))}
         </div>
     )
 }
 
-export default HotelsList
+export default React.memo(HotelsList);

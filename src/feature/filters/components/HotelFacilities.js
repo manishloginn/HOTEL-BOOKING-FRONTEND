@@ -7,11 +7,11 @@ import { addInitialState, setmaxprice, setminprice } from '../slice'
 
 const HotelFacilities = () => {
     const allData = useSelector(store => store.trips.data)
-    const checkamenities = useSelector(store => store.filters.hotelFacilities) 
+    const checkamenities = useSelector(store => store.filters.hotelFacilities)
     const dispatch = useDispatch()
     let amenitiess = new Set()
 
-    console.log(checkamenities)
+    // console.log(checkamenities)
 
 
     allData && allData.forEach(hotel => {
@@ -19,10 +19,9 @@ const HotelFacilities = () => {
     })
 
     const price = allData?.map((hotel) => hotel.price) || [];
-    
+
 
     amenitiess = Array.from(amenitiess)
-
 
     useEffect(() => {
         if (!allData || allData.length === 0) return;
@@ -33,14 +32,19 @@ const HotelFacilities = () => {
         }, {})
 
 
+
         dispatch(addInitialState(addininitialstate))
-       const minprice = Math.min(...price)
-       const maxprice = Math.max(...price)
 
-       
-       dispatch(setminprice(minprice))
-       dispatch(setmaxprice(maxprice))
+        const minprice = Math.min(...price)
+        const maxprice = Math.max(...price)
 
+
+        dispatch(setminprice(minprice))
+        dispatch(setmaxprice(maxprice))
+
+        
+        dispatch(addFilterData(allData));
+        
     }, [allData, dispatch])
 
 
@@ -48,15 +52,29 @@ const HotelFacilities = () => {
         const { value, checked } = e.target;
         const updatedAmenities = { ...checkamenities, [value]: checked };
         dispatch(addInitialState(updatedAmenities));
-    
-        const filteredData = allData.filter((room) =>
-            checked ? room.amenities.includes(value) : true
-        );
-    
-        dispatch(addFilterData(filteredData)); 
-    
+
+        console.log(updatedAmenities)
+
+
+      const selectedAmenities = Object.keys(updatedAmenities).filter(
+            (amenity) => updatedAmenities[amenity]
+        )
+
+        const filteredData = 
+        selectedAmenities.length >= 0 
+        ? allData.filter((room) =>
+            selectedAmenities.every((amenity) => room.amenities.includes(amenity))
+        ) 
+        : allData;
+
+        let filterdData = {selectedamenities:filteredData}
+        console.log(filterdData.selectedamenities);
+
+        dispatch(addFilterData(filterdData));
 
     }
+
+    
 
 
     return (
