@@ -68,7 +68,7 @@ const HotelFacilities = () => {
         : allData;
 
         let filterdData = {selectedamenities:filteredData}
-        console.log(filterdData.selectedamenities);
+        // console.log(filterdData.selectedamenities);
 
         dispatch(addFilterData(filterdData));
 

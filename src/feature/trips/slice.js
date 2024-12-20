@@ -14,7 +14,7 @@ const tripsSlice = createSlice({
     addFilterData: (state, action) => {
       // console.log(data)
       const selectedamenities = action.payload.selectedamenities
-      console.log("Selected Amenities:", selectedamenities);
+      // console.log("Selected Amenities:", selectedamenities);
       if (!selectedamenities) {
         // console.log('zero')
         state.filterData = state.data
