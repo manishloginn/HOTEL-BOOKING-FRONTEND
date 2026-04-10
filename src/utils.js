@@ -9,10 +9,6 @@ import { notification } from "antd"
 
 export const bookingSend = ({ hotelId, roomId, formData, dispatch }) => {
 
-    // console.log(hotelId, roomId, formData, dispatch)
-
-
-
     if (!roomId) {
         return notification.warning({
             message: "Room Required",
@@ -36,33 +32,46 @@ export const bookingSend = ({ hotelId, roomId, formData, dispatch }) => {
 
         try {
             const result = await request(httpConfig)
-            if (result.success) {
-                if(result.data.status === 400 ){
-                    notification.warning({
-                        message:"Room Allreaddy booked in this Date",
-                        description:"Select another Room in View Detail"
-                    })
-                } else {
-                    notification.success({
-                        message: 'Booking Successfull'
-                    })
-                }
+            console.log(result, "result")
+
+            if (result?.data?.message) {
+                window.location.href = result.data.message;
             }
-            
-            if (!result.success) {
-                if(result.data === "User not authenticated"){
-                    notification.warning({
-                        message: 'Login Required',
-                        description: 'Please login to proceed with the booking.',
-                    })
-                    dispatch(toggleLogin())  
-                }
-              
-            } 
+
+            // if (result.success) {
+            //     if(result.data.status === 400 ){
+            //         notification.warning({
+            //             message:"Room Allreaddy booked in this Date",
+            //             description:"Select another Room in View Detail"
+            //         })
+            //     } else {
+            //         notification.success({
+            //             message: 'Booking Successfull'
+            //         })
+            //     }
+            // }
+
+            // if (!result.success) {
+            //     if(result.data === "User not authenticated"){
+            //         notification.warning({
+            //             message: 'Login Required',
+            //             description: 'Please login to proceed with the booking.',
+            //         })
+            //         dispatch(toggleLogin())  
+            //     } else {
+            //          notification.warning({
+            //             message:result.data,
+            //             description:"Select another Room in View Detail"
+            //         })
+            //     }
+            // } 
 
         } catch (error) {
-            console.log('error')
-            console.error("Request failed:", error);
+            notification.warning({
+                message: error.message,
+                description: "Select another Room in View Detail"
+            })
+            console.error("Error booking room:", error);
         }
     }
 

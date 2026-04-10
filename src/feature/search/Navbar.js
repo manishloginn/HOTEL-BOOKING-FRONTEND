@@ -58,7 +58,7 @@ const Navbar = () => {
       const decodeuserDetail = jwtDecode(userToken)
       setuserDetail(decodeuserDetail)
     }
-  })
+  }, [])
 
   const firstlettercapital = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1)

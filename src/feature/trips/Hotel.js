@@ -123,7 +123,7 @@ const Hotel = ({ hotel }) => {
 
                     <div className="price-btn-text-wrraper-buttoms">
                         <button onClick={handelDetail} id={hotel._id} className="view-details-btm">View Details</button>
-                        <button className="book-now-btm" id={hotel._id} onClick={handelbookIntrip} >Book Now</button>
+                        <button className="book-now-btm" id={hotel._id} onClick={handelDetail} >Book Now</button>
                     </div>
                 </div>
             </div>

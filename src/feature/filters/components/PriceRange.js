@@ -39,7 +39,7 @@ console.log("render")
     setRange(value); 
     const [min, max] = value;
     // console.log(min, max) 
-    const filterData = originalData.filter((hotel) => hotel.price >= min && hotel.price <=max)
+    const filterData = originalData.filter((hotel) => hotel.price  >= min && hotel.price <=max)
 
     dispatch(addFilterData({selectedamenities:filterData}))
     // console.log('Sliding Range:', value);
