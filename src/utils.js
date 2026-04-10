@@ -38,33 +38,29 @@ export const bookingSend = ({ hotelId, roomId, formData, dispatch }) => {
                 window.location.href = result.data.message;
             }
 
-            // if (result.success) {
-            //     if(result.data.status === 400 ){
-            //         notification.warning({
-            //             message:"Room Allreaddy booked in this Date",
-            //             description:"Select another Room in View Detail"
-            //         })
-            //     } else {
-            //         notification.success({
-            //             message: 'Booking Successfull'
-            //         })
-            //     }
-            // }
+            if (result.success) {
+                if(result.data.status === 400 ){
+                    notification.warning({
+                        message:"Room Allreaddy booked in this Date",
+                        description:"Select another Room in View Detail"
+                    })
+                }
+            }
 
-            // if (!result.success) {
-            //     if(result.data === "User not authenticated"){
-            //         notification.warning({
-            //             message: 'Login Required',
-            //             description: 'Please login to proceed with the booking.',
-            //         })
-            //         dispatch(toggleLogin())  
-            //     } else {
-            //          notification.warning({
-            //             message:result.data,
-            //             description:"Select another Room in View Detail"
-            //         })
-            //     }
-            // } 
+            if (!result.success) {
+                if(result.data === "User not authenticated"){
+                    notification.warning({
+                        message: 'Login Required',
+                        description: 'Please login to proceed with the booking.',
+                    })
+                    dispatch(toggleLogin())  
+                } else {
+                     notification.warning({
+                        message:result.data,
+                        description:"Select another Room in View Detail"
+                    })
+                }
+            } 
 
         } catch (error) {
             notification.warning({
