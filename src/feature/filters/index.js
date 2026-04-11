@@ -9,7 +9,7 @@ const Filters = () => {
     <div className="filter-section">
       <div className="filters-heading">
         <span>Filters</span>
-        <h4>Popular locations in Bangalore, Karnataka, India</h4>
+       <h4>Discover popular stays near you</h4>
       </div>
 
       <div className="filters-price">
