@@ -102,8 +102,8 @@ const PriceCart = ({ roomdata }) => {
         
             <div className="priceUpper">
                 <div className='pricesection'>
-                    <h3 >₹{(hotelDetail?.price - hotelDetail?.price * 0.10).toFixed(2)}</h3>
-                    <span ><strike style={{ color: "gray" }} >₹{hotelDetail?.price }</strike></span>
+                    <h3 >₹{ hotelDetail?.price ?(hotelDetail?.price - hotelDetail?.price * 0.10)?.toFixed(2) : "--"}</h3>
+                    <span ><strike style={{ color: "gray" }} >₹{hotelDetail?.price ? hotelDetail?.price : "--" }</strike></span>
                 </div>
                 <div className="calender">
                     <div className="calenderhover">
