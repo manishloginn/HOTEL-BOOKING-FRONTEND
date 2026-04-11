@@ -102,7 +102,7 @@ export const Linkbranch = () => {
             :
             <div className='navbarlink'>
               <Link onClick={showLoginPopup} > Sign In </Link>
-              <Link to='#' > Create An Account </Link>
+              <Link onClick={showLoginPopup} > Create An Account </Link>
             </div>
         }
 
